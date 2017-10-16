@@ -1,0 +1,35 @@
+0000:0000 66           DB     66
+0000:0001 68           DB     68
+0000:0002 A0C500       MOV    AL, [00C5]
+0000:0005 00E9         ADD    CL, CH
+0000:0007 55           PUSH   BP
+0000:0008 FF6668       JMP    [BP+68]
+0000:000B 58           POP    AX
+0000:000C C60000       MOV    BYTE PTR [BX+SI], 00
+0000:000F E9BFFE       JMP    FED1
+0000:0012 66           DB     66
+0000:0013 68           DB     68
+0000:0014 54           PUSH   SP
+0000:0015 CC           INT    3
+0000:0016 0000         ADD    [BX+SI], AL
+0000:0018 E9B6FE       JMP    FED1
+0000:001B 66           DB     66
+0000:001C 68           DB     68
+0000:001D E1D1         LOOPZ  FFF0
+0000:001F 0000         ADD    [BX+SI], AL
+0000:0021 E9ADFE       JMP    FED1
+0000:0024 66           DB     66
+0000:0025 68           DB     68
+0000:0026 DB           DB     DB
+0000:0027 8E00         MOV    ES, [BX+SI]
+0000:0029 00E9         ADD    CL, CH
+0000:002B A4           MOVSB 
+0000:002C FE6668       ???    BYTE PTR [BP+68]
+0000:002F 27           DAA   
+0000:0030 E80000       CALL   0033
+0000:0033 E99BFE       JMP    FED1
+0000:0036 31D2         XOR    DX, DX
+0000:0038 8ED2         MOV    SS, DX
+0000:003A 66           DB     66
+0000:003B BC0070       MOV    SP, 7000
+0000:003E 0000         ADD    [BX+SI], AL

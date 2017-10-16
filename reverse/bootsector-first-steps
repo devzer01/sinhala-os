@@ -1,0 +1,133 @@
+AX (WORD IO) // MULTIPLY DIVIDE
+AH/L BYTE MULTIPLY DIVIDE IO (AL) => TRANSLATE DECIMAL    
+BX TRANSLATE
+CX STRINGS / LOOPS
+CL SHIFT ROTATE
+DX WORD MULTIPLY DIVIDE INDIRECT IO
+SP STACK OPERATOR
+SI STRING OPERATIONS
+DI STRING OPERATIONS
+
+AX 	ACCUMULATOR
+AH AL  
+BX	BASE
+BH BL	
+
+16BIT
+CS	CODE
+DS	DATA
+SS	STACK
+ES	EXTRA
+
+low 	high
+19H instructions
+1A instructions
+
+
+most significant bit at higher
+5502H => 724H: 02
+         725H: 55
+			      4C   3B
+SEGMENT REGISTER: 4H 5H   6H    7H 
+                   (offset)   (base) 3b4ch
+
+flags
+TF (TRAP) DF (DIRECTION) IF (INT ENABLED) OF (OVERFLOW) SF (SIGN) ZF (ZERO) AF (AUX CARRY) 
+PF (PARITY) CF (CARRY)
+
+AF (DECIMAL ARTHIMATIC) 
+...........
+DF (STRING INSTRUCTIONS TO DECREMENT AUTO (LR OR RL)
+IF (MASKABLE INTS EXTERNAL) 
+TF SINGLE STEP
+
+
+interrupts -> 
+004H -> sungle step 
+
+0000 -> offset
+0002 -> cs base 0600 -> 0060 << 4 => 600 + 97be => 9dbe
+to get interupt procedure access point multiply int by 4 
+
+IRET RETURN FROM INT
+
+tf -> OR FLAGS 0100 and FEFF
+
+qemu use o to write io and i to read
+
+0000:003E FA           CLI   			;clear interupts
+0000:003F 33C0         XOR    AX, AX	clear ax
+0000:0041 8ED0         MOV    SS, AX	set stack pointer to 0
+0000:0043 BC007C       MOV    SP, 7C00  set stack segment base 7c00
+0000:0046 16           PUSH   SS		set es to 0
+0000:0047 07           POP    ES		set es to 0
+0000:0048 BB7800       MOV    BX, 0078	set 0078 to bx 
+0000:004B 36           SS:   
+
+0x00007c4b:  lds    %ss:(%bx),%si
+LDS SI,, SS:BX -> 0000:0078 =? 00000078: 0x14 0x6f 0x00 0xf0 (read 1byte) => read as word 0xf0006f14
+0000:004C C537         LDS    SI, ss:[BX]	;stack index, (ss is ss->0, si -> 0, bx 7x 
+MOVES TO DS => F000: (SEGMENT) SI (6F14)
+bx => 78 
+esi => 0x6f14 
+ds => 0xf000 => f6f14
+
+0x003b4e4f address reference 
+
+
+
+0000:004E 1E           PUSH   DS
+0000:004F 56           PUSH   SI
+0000:0050 16           PUSH   SS
+0000:0051 53           PUSH   BX
+0000:0052 BF3E7C       MOV    DI, 7C3E	//copy 7c3e
+0000:0055 B90B00       MOV    CX, 000B //have b on cx
+0000:0058 FC           CLD   	//cld clear direction causing DI to increase and SI 
+
+VALUES OF DI 0x7C3E : f000
+	      0x6F14
+[---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=0 flags
+
+ESI=00006f14 EDI=00007c3e EBP=00000000 ESP=00007bf8
+EIP=00007c59 EFL=00000046 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=0
+
+copy what was in rep movsb %ds:(%si),%es:(%di)
+
+0xf6f14 to 7c3e (B number of bytes) 12 bytes
+0xf6f14:	0xaf	0x02	0x25	0x02	0x12	0x1b	0xff	0x6c
+0xf6f1c:	0xf6	0x0f	0x08	0x4f
+
+ 
+
+0000:0059 F3           REPZ  
+0000:005A A4           MOVSB 
+0000:005B 06           PUSH   ES
+0000:005C 1F           POP    DS
+both es and ds = 0 now
+
+
+0x7c47:	0x0f move
+0000:005D C645FE0F     MOV    BYTE PTR [DI-02], 0F	
+
+move 0x12 to cx 
+0000:0061 8B0E187C     MOV    CX, [7C18]
+
+(gdb) stepi 
+0x00007c65 in ?? ()
+0000:0065 884DF9       MOV    [DI-07], CL ; CL and 0x7c42 = 0x12
+0000:0068 894702       MOV    [BX+02], AX ; 7a == 00
+0000:006B C7073E7C     MOV    WORD PTR [BX], 7C3E //copy value (interrupt 1E at 7c3e) 
+0000:006F FB           STI   //installed 1E
+0000:0070 CD13         INT    13 CALLS 13 WITH AX AND DX 0
+stack has 00007bf2: 0x00007c72
+jumps to 0xfe3fe (int 13 here) instruction to jmp 0xfd707
+
+$ infront of value means literal value
+0x000fd66a:  mov    $0xde00,%eax
+
+0x000fd6bf:  calll  *%ecx (area pointed by ecx is empty)
+
+0x000fd6bf -> ecx = c5a0 -> fc5a0 (same code segment)
+[] indicates value at address
+
+
