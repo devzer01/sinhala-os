@@ -5,22 +5,46 @@
 [ORG  0x7c00]
 
 boot:
-    mov ax,0x1112
-    mov bl, 0x0
-    int 0x10
     
-    mov ax, 0x1300
-    mov bh, 0x00
-    mov bl, 0x07
-    mov cx, 0x0a
-    mov dx, 0x0000
-    mov bp, textp
-    int 0x10
+    ; video mode
+    mov al, 87h
+    mov ah, 00h
+    int 10h
 
-    ;mov al, 0x43
-    ;mov ah, 0x0e
-    ;mov cx, 0x0f
-    ;int 0x10
+    ; load font
+    mov ax, 1112h
+    mov bl, 00h
+    int 10h
+    
+    mov al, 0h
+    mov ah, 05h
+    int 10h
+
+    ; set cursor 
+    mov ah, 02h
+    mov bh, 00h
+    mov dh, 10h
+    mov dl, 00h
+    int 10h
+
+    mov al, 43h
+    mov ah, 09h
+    mov bh, 00h
+    mov bl, 07h
+    mov cx, 1h
+    int 10h
+    
+    mov ah, 02h
+    inc dl
+    int 10h
+
+     mov al, 44h
+     mov ah, 09h
+     mov bh, 00h
+     mov bl, 07h
+     mov cx, 1h
+     int 10h
+
     
     jmp $
 
