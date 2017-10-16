@@ -50,15 +50,14 @@ fontdata:
         ;mov [es:di],dl
         mov cx, 4          ;set font width to 12
         mov si, word fnt
+        mov ah, 0eh
         ;mov ax, word fnt
         ;mov ds, ax
+
     drawmore:
-        mov ax, [ds:si]
+        lodsb
         int 0x10
-        inc si
-        dec cx
-        cmp cx, 0
-        jnz drawmore
+        loop drawmore
         ;mov [es:di], ah
 halt:
         nop
@@ -66,7 +65,7 @@ halt:
         ;cli
         ;hlt
 
-fnt:    dw 0x0e61, 0x0E62, 0x0E63, 0x0E64, 0x0E65, 5, 5, 5, 5, 5, 5, 5, 5, 5
+fnt:    db 1, 2, 3, 4, 0x0E65, 5, 5, 5, 5, 5, 5, 5, 5, 5
         db 5, 5, 5, 6, 7, 5, 6, 8, 5, 5, 5, 5, 5, 5
         db 5, 5, 5, 5, 5, 5, 6, 7, 5, 6, 8, 5, 5, 5
         db 5, 5, 5, 5, 5, 5, 5, 5, 5

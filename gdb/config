@@ -17,6 +17,48 @@
   [[bootloader]]
     [[[child0]]]
       fullscreen = False
+      last_active_term = fb592328-cd13-4bdf-9891-28f573eb1ee8
+      last_active_window = True
+      maximised = True
+      order = 0
+      parent = ""
+      position = 49:595
+      size = 1871, 1056
+      title = bootloader debugging
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = 932
+      ratio = 0.499732763228
+      type = HPaned
+    [[[child2]]]
+      order = 0
+      parent = child1
+      position = 525
+      ratio = 0.5
+      type = VPaned
+    [[[terminal3]]]
+      order = 0
+      parent = child2
+      profile = debug
+      type = Terminal
+      uuid = 9e5046d7-7bdc-49b2-9841-aaca56aa990b
+    [[[terminal4]]]
+      order = 1
+      parent = child2
+      profile = qemu
+      type = Terminal
+      uuid = fb592328-cd13-4bdf-9891-28f573eb1ee8
+    [[[terminal5]]]
+      order = 1
+      parent = child1
+      profile = gdb
+      type = Terminal
+      uuid = 9782b706-0029-4184-bb2d-4c99b09caaa9
+  [[bootloaderx]]
+    [[[child0]]]
+      fullscreen = False
       last_active_term = 9e5046d7-7bdc-49b2-9841-aaca56aa990b
       last_active_window = True
       maximised = True
@@ -54,13 +96,15 @@
   [[default]]
     background_image = None
     update_records = False
+  [[debug]]
+    custom_command = tail -f /home/nayana/code/sinhala-os/logs/debug.log
+    login_shell = True
+    use_custom_command = True
   [[gdb]]
     background_image = None
     copy_on_selection = True
     custom_command = gdb
-    font = Sans 20
     foreground_color = "#3f5df0"
-    exit_action = close
     login_shell = True
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
     use_custom_command = True
@@ -69,9 +113,7 @@
     background_image = None
     copy_on_selection = True
     custom_command = telnet localhost 4444
-    font = Sans 20
     foreground_color = "#DC143C"
-    exit_action = close
     login_shell = True
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
     use_custom_command = True
