@@ -1,0 +1,106 @@
+
+This file is dated: 13 Aug 2015
+
+This file contains new items added to the documentation.
+
+13 Aug 2015:
+  1. I have now included a rough (very) rough draft of NBC with source.
+     Please use with caution.
+
+21 Nov 2014:
+ 1. The C Style '0x' hex number, starting with a '0x' and up to 16 hex digits.
+
+25 June 2011:
+ 1. added the outfile directive documentation.
+
+23 June 2008:
+ 1. Updated the page numbers.
+ 2. added the documentation for (page 21)
+     mov  eax,'ABCD'
+    and
+     mov  eax,"ABCD"
+ 3. updated a few grammar items and spellings.
+
+
+6 July 2006:
+ 1. You can now include a binary file at a given point in your object file.
+
+   mov  ax,1234h
+
+  incbin this_file.bin
+
+   mov  ax,4321h
+
+  will include the contents of "this_file.bin" at that location in the
+  object file.
+
+
+23 Sept 2005:
+ 1. NBASM now allows floating point declarations using three prefix characters.
+    '!' for 4-byte floats
+    '#' for 8-byte doubles
+    '@' for 10-byte declares
+
+    ex:
+       float   dd  !1234.5678
+       double  dq  #1234.5678
+       large   dt  @1234.5678
+
+ 2. NBASM now has a cross reference feature.
+
+  NBASM includes a cross reference feature.  A cross reference is
+   a list of each symbol and then a list of each line it is used on.
+
+  This allows you to find where a symbol is used.
+
+  Here is an example of a cross reference for the following source
+   file:
+
+    .model tiny
+    .code
+    .186
+    
+    TEMP equ 1234h
+    
+           org 100h
+    
+           mov  ax,TEMP
+    
+           mov  dx,offset printme
+           mov  ah,09
+           int  21h
+    
+           .exit
+    
+    printme db 13,10,'An example$'
+    
+    .end
+    
+     ------------------------------------------------
+       Symbol Table Dump with Cross Reference List:  
+     ------------------------------------------------
+    
+      Symbol          (equ)    Value  XRef List
+    
+    _NBASM_              *  1
+    TEMP                 *  1234H
+    PRINTME                     10Eh  17, 11
+    
+
+  The cross reference displays eht value of the symbol plus
+   each line that it was used on.  If there is no line numbers
+   in the XRef List, then that symbol was not used in the source.
+
+  ***** Obviously, the TEMP symbol was used, and there are
+        no numbers in the XREF list.  This is a known error
+        and I hope to have it fixed soon.
+
+  The cross reference is created in the listing file when you
+   use the /x command line parameter.
+
+
+24 Sept 2005
+ 1. The movzx and movsx instructions are now documented
+
+
+

@@ -1,0 +1,280 @@
+
+The FAQ list for NBASM
+
+This FAQ list is dated: 12 August 2007
+
+To use this FAQ, simple search for the FAQ01xx keyword.  For example,
+if your question is the second listed, and it has a keyword of FAQ0102,
+then simply search for that keyword in the body of the faq to find the
+answer.
+
+Questions:
+
+ - FAQ0101 Why is NBASM in Beta form?
+ - FAQ0102 Why NBASM when there are so many other assemblers out there?
+ - FAQ0103 Where can I get the latest version of NBASM?
+ - FAQ0104 Where can I get support for NBASM and will it cost me?
+ - FAQ0105 What kind of programs can I make with NBASM?
+ - FAQ0106 What will I benefit from using NBASM over one of the other 
+                                     assemblers out there?
+ - FAQ0201 If I get stuck on a project using NBASM and can't figure out why,
+                                     will you help me?
+ - FAQ1001 Why can't I jmp/jcc to a procedure name?
+
+ - FAQ2001 How do I use NBASM in OS development?
+
+
+
+Answers:
+=- FAQ0101 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  Why is NBASM in Beta form?
+
+  Teqhnicality, NBASM isn't even in Beta form.  Beta is when you have a
+   release that should have all functions, but you need it to be tested.
+   Once tested, then it can become a full release. However, most people don't
+   understand this and 'Beta' is what I chose to keep some understanding
+   within the 'masses'. (If you feel that I am/was in the wrong here, let me
+   know)
+
+
+=- FAQ0102 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  Why NBASM when there are so many other assemblers out there?
+
+  Some while ago (say about 10 years ago and 5 million projects ago) I was 
+   interested in creating an assembler.  I was also interested in learning 
+   more about x86 assembly.  I put the two together and created NBASM written
+   in x86 assembly.  I might have plans to make it a self-assemblable
+   assembler some day, but there are a few disadvantages to that.  The main,
+   being that if I don't have a working backup of both the source and the
+   executable, and make an error, I am stuck and can not fix the error.
+   (not very easily, anyway)
+
+=- FAQ0103 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  Where can I get the latest version of NBASM?
+ 
+  At the time of this writing, you could get the lastest version at:
+    http://www.frontiernet.net/~fys/newbasic.htm
+
+
+=- FAQ0104 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  Where can I get support for NBASM and will it cost me?
+
+  At the time of this writing, you can get FREE support at:
+    http://www.frontiernet.net/~fys/newbasic.htm
+  and e-mail support at:
+    fys@frontiernet.net
+                 ...It will cost you nothing...
+
+
+=- FAQ0105 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  What kind of programs can I make with NBASM?
+
+  You can make any kind of program your heart desires as long as it will
+   be ran on an Intel x86 based system.
+   Most of the time, it is used in DOS to create small .COM files.
+   However, it has been/is being used to create:
+    - The boot and loader code for FYSOS
+        http://www.frontiernet.net/~fys/fysos.htm
+    - a fully capable DOS 5.x look alike Operating System
+    - with a few modifications, could assemble itself
+    - many, many, many small DOS utilities
+    - DOS TSRs used by many DOS users
+    - Do you have a large project you would like to have listed here :-)
+
+
+=- FAQ0106 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  What will I benefit from using NBASM over one of the other
+             assemblers out there?
+  
+  NBASM has its advantages and disavantages compared to some of the other
+   assemblers available.
+
+   Advantages:
+     - NBASM is free
+     - NBASM is fully supported
+     - NBASM is a very easy assembler to learn and use
+     - NBASM is near MASM 5.1x compatible.  Which means with little
+        modifications, you can assemble the MASM code in most books.
+     - Did I mention that MASM is free?
+   Disadvantages:
+     - NBASM is not completely finished and is always being worked on.
+     - NBASM does not fully support the later 32 bit instructions, though
+        it does support most of them.
+     - NBASM does not support many of the output formats as others do.
+     - Did I mention that NBASM was free.....
+
+
+
+=- FAQ0201 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  If I get stuck on a project using NBASM and can't figure 
+    out why, will you help me?
+
+  Yes.  Simply send a snippet of the code you are having trouble with,
+   and the current version of NBASM you are using to:
+
+       fys@frontiernet.net
+
+
+
+=- FAQ1001 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  Why can't I jmp/jcc to a procedure name?
+
+  As long as you do not use the 'uses' directive on the 'proc' line,
+   you can use the procedure name as a label to jmp/jcc to.
+   However, if you use the 'uses' directive and you jump to
+   the top of the procedure using the label name of the proc, you
+   will be jumping to the top of the 'push xx' instructions that
+   where pushed by the 'uses' directive.
+
+     label_name proc near uses ax bx
+              [push ax]   ; <--- what you don't see
+              [push bx]   ; <--- what you don't see
+              .
+              .
+              .
+              cmp  xx,xx
+              jne  short label_name
+              .
+              .
+              [pop  bx]   ; <--- what you don't see
+              [pop  ax]   ; <--- what you don't see
+
+      ; if you jumped back to label_name, you will still have
+      ;  at least one count of ax and bx on the stack and the
+      ;  following 'ret' will not return where you think it should.
+
+              ret
+     label_name endp
+
+
+
+
+=- FAQ2001 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+   How do I use NBASM in OS Development?
+
+   The advantage of NBASM, is that it won't add anything to the
+    binary unless you specifically ask for it, of you are using the
+    .model tiny directive with out the 'org xxh' operand.
+
+   Also, NBASM will produce binaries that are OS independant.  The
+    only OS independance is when you make a .com file for DOS, however
+    this is easily modified.  (Please remember that writing OS depended
+    code will create an OS dependant binary, however, if you don't code
+    any OS dependant code in your source files, NBASM won't put any
+    OS dependant code in the binary).
+
+   For example, let's say I want to create a 32-bit Pmode binary that
+    will be loaded to physical address 0x00100000 (1 meg).  All you
+    have to do is use the .386 and .pmode directives, plus the orgnf
+    operand.
+
+
+     .model tiny
+     .code
+     .386
+     .pmode
+               orgnf 00100000h
+
+     start:    mov  eax,offset start
+               mov  ebx,offset end
+               .
+               .
+               .
+               .
+               jmp  short $
+     end:
+
+     .end
+
+
+   To assembly, use
+
+     nbasm32 filename filename.bin
+
+    then using your boot code, loader code, or other code, simply
+    load filename.bin to offset 0x00100000 and jump to it.  Remember
+    that the code is 32-bit protected mode code, so it assumes that
+    you already have set up a GDT and have the CS and DS selectors
+    set with a base of 0x00000000.  If your selectors have a different
+    base, say 0x00100000 (1 meg) and you want to load your code to
+    0x00300000 (3 meg), simply do the following:
+
+               orgnf (00300000h - 00100000h)
+
+    The 00300000h being the physical offset where this code is loaded,
+     and the 00100000h being the base memory of the code selector.
+
+   NBASM can also be used as the 16-bit code to setup the GDT and
+    selectors.  For example,
+
+
+    .model tiny
+    .code
+    .386
+    .rmode
+
+            ; assuming we are at 3000:0000h, real mode
+            ; loaded here by the boot code.
+            org 0000h
+
+            ; 16-bit code here to set up the
+            ; GDT and segment selectors.
+
+            ; now move to unreal mode.  Unreal mode is
+            ;  were you temporarily go to pmode, set up a
+            ;  data descriptor with a base of 0x00000000
+            ;  (or another base) and a limit higher than
+            ;  64k.  Then you come back to real mode.
+
+            ; as long as you don't modify the segment register,
+            ;  you can use it and a 32-bit operand to move
+            ;  data from real mode (under a meg) to above
+            ;  the megabyte limit. Example below.
+
+            ; now load the pmode code from disk using the
+            ;  BIOS, to a  buffer under 1meg.  (If the
+            ;  pmode code is fairly large, do it in multiple
+            ;  parts).  Then use the following example
+            ;  to move the code to 0x00300000.
+
+            ; example of the move:
+            ;  buffer is in the range ds:0000h and ds:FFFFh
+            ;   minus the size of the buffer.
+            ;
+            ;    mov  si,offset buffer
+            ;    mov  edi,00300000h ; 3 meg
+            ;    mov  ecx,512       ; 512 dwords
+            ;@@: lodsd
+            ;    mov  es:[edi],eax
+            ;    add  edi,4
+            ;    dec  ecx
+            ;    jnz  short @b
+            ;
+            ; the above code assumes you set up a valid GDT
+            ;  with an entry that has a base of 0x00000000
+            ;  and a limit of at least 0x00300000+(512*4),
+            ;  and set the es selector to this entry while
+            ;  in pmode.
+
+   I will not go into how to set up a valid GDT and go into
+    unreal mode and/or pmode here since this doesn't pertain
+    to using NBASM.  There are many examples on the internet
+    on how to do so.
+
+   I am an avid OS Developer fan.  If you have any questions
+    on using NBASM in your OS Development, please let me know.
+    I would love to help you.
+
+
+
+=- FAQxxxx -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+
+
+
+end of FAQ list
+
+If you have a question/answer/comment/etc. please send them to:
+
+  fys@frontiernet.net

@@ -1,0 +1,157 @@
+<html><!-- This document Copyright � 1997 by Dan Rollins --><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>ANSI Console Escape Sequences</title></head>
+<body><form><table border="5" bgcolor="#C0C0C0"><tbody><tr><td><input value="Top" onclick="window.location='0002.HTM'" type="button"></td><td><input value="Tech Topics" onclick="window.location='0003.HTM'" type="button"></td><td><input value="- -" onclick="window.location='0049.HTM'" type="button"></td><td><input value="++" onclick="window.location='0051.HTM'" type="button"></td><td><input value="GoBack" onclick="history.back()" type="button"></td><td><input value="TECH Help! Home Page" onclick="window.location='INDEX.HTM'" type="button"></td></tr></tbody></table></form><h2>ANSI Console Escape Sequences</h2><pre> ANSI Escape codes have no effect unless ANSI.SYS has been installed via a
+ <a href="http://webpages.charter.net/danrollins/techhelp/0276.HTM">DEVICE=</a> command in <a href="http://webpages.charter.net/danrollins/techhelp/0267.HTM">CONFIG.SYS</a>.  Use <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">INT 2fH 1a00H</a> to see if it is
+ installed.  Just output the codes to the CON device (see <a href="http://webpages.charter.net/danrollins/techhelp/0007.HTM">Character I/O</a>).
+ Several examples are included at the end of this topic.
+
+    Note: Since you can't be certain that all computers have ANSI.SYS
+          installed, most programmers do not rely on using these codes in
+          commercial applications.
+
+ In the following list, items in this color are parameters (usually numeric
+ values in decimal) and the &lt; character is an ESC (ASCII 27 or 1bH).
+
+Sequence (&lt; is ESC) Function
+������������������� �����������������������������������������������������
+                    ��Cursor Motion��
+ &lt;[row;clmH         positions the cursor. Default is 1;1 (top left corner)
+
+ &lt;[row;clmf         (same as above)
+
+ &lt;[rowsA            moves the cursor up.  Default: 1.  Won't go above top.
+
+ &lt;[rowsB            moves cursor down.  Default: 1. Won't go below bottom.
+
+ &lt;[clmsC            moves the cursor forward (to the right) Default: 1
+
+ &lt;[clmsD            moves the cursor backward (to the left) Default: 1
+
+                    ��Erase Operations��
+ &lt;[2J               erases the screen and homes the cursor
+
+ &lt;[K                erases to the end of the current line
+
+                    ��Miscellaneous��
+ &lt;[6n               outputs the current line and column in the form:
+                      &lt;[row;clmR
+
+ &lt;[s                saves the current cursor position (see &lt;[u)
+
+ &lt;[u                restores cursor to last position saved by &lt;[s
+
+                    ��Screen Control��
+ &lt;[attr;...;attrm   sets display attributes. attr values are:
+                       0  normal     (white on black)
+                       1  bold       (character colors are high-intensity)
+                       4  underline  (IBM Monochrome monitor only)
+                       5  blink      (foreground blinks)
+                       7  reverse    (black on white)
+                       8  no display (foreground = background)
+                       30  BLACK foreground     40  BLACK background
+                       31  RED foreground       41  RED background
+                       32  GREEN foreground     42  GREEN background
+                       33  YELLOW foreground    43  YELLOW background
+                       34  BLUE foreground      44  BLUE background
+                       35  MAGENTA foreground   45  MAGENTA background
+                       36  CYAN foreground      46  CYAN background
+                       37  WHITE foreground     47  WHITE background
+
+ &lt;[=modeh           sets screen width and mode where mode values are:
+                       0  40x25 text mode black and white
+                       1  40x25 text mode color
+                       2  80x25 text mode black and white
+                       3  80x25 text mode color
+                       4  320x200 graphics mode color
+                       5  320x200 graphics mode black and white
+                       6  640x200 graphics mode black and white
+                       7  Causes cursor to wrap to new line at end of line.
+
+ &lt;[=7l              stops cursor from wrapping at end of line
+
+                    ��Keyboard Redefinition��
+ &lt;[num;num...nump   redefines a keystroke so it yields different values.
+   or               The first num (or first character of string) is
+ &lt;["string"p        the key being redefined.  The following values are the
+   or               new value for the key.
+ &lt;[num;"string"p    The following redefines Ctrl-D key to be: DIR C:[Enter]
+  or                  &lt;[4;"DIR C:";13p
+various
+ combinations       Certain keystrokes must be defined with two nums.
+                    For example, [F1] is:  0;59; and [Home] is:  0;71;
+                    The following redefines the F10 key to be: DIR [Enter]
+                      &lt;[0;68;"DIR";13p
+
+                    See <a href="http://webpages.charter.net/danrollins/techhelp/0055.HTM">Extended ASCII Keystrokes</a> for a full listing.
+
+                    Note: To reset a key to its original value, use its
+                          num code(s) twice. The following resets [F10].
+                               &lt;[0;68;0;68p
+������������������� �������������������������������������������������������
+
+ One way to find if ANSI.SYS is installed, is to display the &lt;[6n function
+ and immediately read <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">standard input</a>.  It should yield a value in the form:
+ &lt;[row;clmR.
+
+ Another way is to use <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">INT 2fH 1a00H</a> (get ANSI.SYS state) DOS 3.0+
+
+����������������������������������������������������������������������������
+ Here are some examples usages in two programming languages:
+
+ ;============================= ASM example =========================
+ data_seg  segment
+ ColorMode db  1bH,'=3h','$'
+ SetF10    db  1bH,'0;68;"F10 was pressed"p','$'
+ data_seg  ends
+
+ code_seg segment
+          mov  dx,offset ColorMode  ;set screen to 80x25 color mode
+          mov  ah,9                 ;DOS display string function
+          int  21H
+          mov  dx,offset SetF10     ;redefine F10 key to a string of text
+          mov  ah,9
+          int  21H
+ code_seg ends
+
+ /* ====================== C function example ======================= */
+ set_cursor(row,clm)
+ int row,clm;
+ {
+    printf("%c[%d;%dH",27,row,clm)
+ }
+����������������������������������������������������������������������������
+ It is difficult to experiment with ANSI sequences from the DOS command
+ line since DOS does not allow direct keyboard input of the ESC character.
+ Here are three ways to experiment:
+
+   o Use DOS's Edit command (DOS 5.0+) to create a batch file:
+     ��������������������������������������� (BLUEIT.BAT)
+     �@ECHO OFF
+     �REM -- clears screen to yellow on blue
+     �ECHO &lt;[0;33;44m&lt;[2J
+     ����������������������������������������������������
+    Note: To make the &lt; character in Edit, press Ctrl+P then press Esc.
+
+   o Use the PROMPT command to output an ESC to the console. For instance:
+     �������������������� (SETANSI.BAT)
+     �ECHO ON
+     �PROMPT $e[7m                     sets up to display in reverse video
+     �PROMPT $e[0;68;"DIR";13p         redefines the F10 key
+     �PROMPT $p$g                      sets the prompt back to normal
+     ���������������������������������
+
+   o Create a disk file with BASIC and then TYPE it from DOS:
+      OPEN "ansitest.txt" FOR OUTPUT AS #1
+      PRINT #1,CHR$(27);"[7m"             '** display reverse video
+      PRINT #1,CHR$(27);"[0;68;'DIR';13p" '** define F10 key as DIR<enter>
+      SYSTEM
+      TYPE ansitest.txt
+
+See Also: <a href="http://webpages.charter.net/danrollins/techhelp/0055.HTM">Extended ASCII Keystrokes</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/0267.HTM">CONFIG.SYS</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/0048.HTM">ASCII Control Codes</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/0047.HTM">Character Set Matrix</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/0045.HTM">ASCII</a>
+                                    -*-
+</enter></pre>
+</body></html>

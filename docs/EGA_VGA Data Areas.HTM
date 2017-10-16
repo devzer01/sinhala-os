@@ -1,0 +1,53 @@
+<html><!-- This document Copyright � 1997 by Dan Rollins --><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>EGA/VGA Data Areas</title></head>
+<body><form><table border="5" bgcolor="#C0C0C0"><tbody><tr><td><input value="Top" onclick="window.location='0002.HTM'" type="button"></td><td><input value="Tech Topics" onclick="window.location='0003.HTM'" type="button"></td><td><input value="- -" onclick="window.location='0070.HTM'" type="button"></td><td><input value="++" onclick="window.location='0072.HTM'" type="button"></td><td><input value="GoBack" onclick="history.back()" type="button"></td><td><input value="TECH Help! Home Page" onclick="window.location='INDEX.HTM'" type="button"></td></tr></tbody></table></form><h2>EGA/VGA Data Areas</h2><pre> These data variables are defined when an <a href="http://webpages.charter.net/danrollins/techhelp/0067.HTM">EGA</a> or <a href="http://webpages.charter.net/danrollins/techhelp/0070.HTM">VGA</a> is installed.
+
+ Address   Size Contents   (most are in <a href="http://webpages.charter.net/danrollins/techhelp/0093.HTM">BIOS Data Area</a>)
+ ��������� ���� ����������������������������������������������������������
+ 0000:0074   4  prVidInit  <a href="http://webpages.charter.net/danrollins/techhelp/0255.HTM">INT 1dH</a> address of <a href="http://webpages.charter.net/danrollins/techhelp/0090.HTM">VidInitRec</a>
+ 0000:010c   4  prFont     <a href="http://webpages.charter.net/danrollins/techhelp/0260.HTM">INT 43H</a> addr of <a href="http://webpages.charter.net/danrollins/techhelp/0091.HTM">Font Definition Data</a> for gfx
+
+ 0040:0085   2  wPoints    height of character matrix (scan lines)
+ 0040:0087   1  bInfo      bit fields in <a href="http://webpages.charter.net/danrollins/techhelp/0072.HTM">EgaMiscInfoRec</a> layout
+ 0040:0088   1  bInfo2     bit fields in <a href="http://webpages.charter.net/danrollins/techhelp/0072.HTM">EgaMiscInfo2Rec</a> layout
+ 0040:0089   1  rFlags     bit fields in <a href="http://webpages.charter.net/danrollins/techhelp/0073.HTM">VgaFlagsRec</a> layout (VGA only)
+ 0040:008A   1  bDccIdx    current display combo in <a href="http://webpages.charter.net/danrollins/techhelp/0081.HTM">VgaDccRec</a> (VGA only)
+ 0040:00a8   4  pfrSavePtr far address of an <a href="http://webpages.charter.net/danrollins/techhelp/0074.HTM">EgaSavePtrRec</a> ��ͻ
+  �����������������������������������������������������������ͼ
+  �&gt;� <a href="http://webpages.charter.net/danrollins/techhelp/0074.HTM">EgaSavePtrRec</a> Ŀ
+    � pfrVidParms   ����&gt; <a href="http://webpages.charter.net/danrollins/techhelp/0075.HTM">EgaVidParmsRec</a>
+    � pfrDynParms   ����&gt; <a href="http://webpages.charter.net/danrollins/techhelp/0076.HTM">EgaDynamicSaveRec</a>   or 0000:0000
+    � pfrTxtAuxFnt  ����&gt; <a href="http://webpages.charter.net/danrollins/techhelp/0077.HTM">EgaTxtFontRec</a> ���ͻ or 0000:0000
+    � pfrGfxAuxFnt  ����&gt; <a href="http://webpages.charter.net/danrollins/techhelp/0078.HTM">EgaGfxFontRec</a> ��ͻ� or 0000:0000
+    � pfrSavePtr2   ����&gt; <a href="http://webpages.charter.net/danrollins/techhelp/0079.HTM">VgaSavePtr2Rec</a> ͻ��
+    ������������������                    ���
+�����������������������������������������ͼ��
+������������������������������������������ͼ�
+�������������������������������������������ͼ
+���&gt;� <a href="http://webpages.charter.net/danrollins/techhelp/0077.HTM">EgaTxtFontRec</a> �Ŀ
+��  � font info       �
+��  � pfFontDefData ����&gt; <a href="http://webpages.charter.net/danrollins/techhelp/0091.HTM">Font Definition Data</a>
+��  �������������������
+��
+���&gt;� <a href="http://webpages.charter.net/danrollins/techhelp/0078.HTM">EgaGfxFontRec</a> �Ŀ
+�   � font info       �
+�   � pfFontDefData ����&gt; <a href="http://webpages.charter.net/danrollins/techhelp/0091.HTM">Font Definition Data</a>
+�   �������������������
+�
+���&gt;� <a href="http://webpages.charter.net/danrollins/techhelp/0079.HTM">VgaSavePtr2Rec</a> � (VGA only)
+    � pfrDccRec     ����&gt; <a href="http://webpages.charter.net/danrollins/techhelp/0081.HTM">VgaDccRec</a>
+    � pfrTxtAuxFnt  ����&gt; <a href="http://webpages.charter.net/danrollins/techhelp/0077.HTM">EgaTxtFontRec</a>        or 0000:0000
+    � pfrPalProf    ����&gt; <a href="http://webpages.charter.net/danrollins/techhelp/0080.HTM">VgaPaletteProfileRec</a> or 0000:0000
+    ������������������
+
+      <a href="http://webpages.charter.net/danrollins/techhelp/0178.HTM">INT 10H 1bH</a>   ����&gt; <a href="http://webpages.charter.net/danrollins/techhelp/0082.HTM">VgaDynamicStateRec</a> ����&gt; <a href="http://webpages.charter.net/danrollins/techhelp/0083.HTM">VgaStaticFnalityRec</a>
+
+See Also: <a href="http://webpages.charter.net/danrollins/techhelp/0067.HTM">EGA</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/0070.HTM">VGA</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/0089.HTM">Video Memory Layouts</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">EGA I/O Ports</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">VGA I/O Ports</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/0093.HTM">BIOS Data Area</a>
+                                    -*-
+</pre>
+</body></html>

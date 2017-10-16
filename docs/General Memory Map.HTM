@@ -1,0 +1,86 @@
+<html><!-- This document Copyright й 1997 by Dan Rollins --><head>
+<meta http-equiv="content-type" content="text/html; charset=IBM866"><title>General Memory Map</title></head>
+<body><form><table border="5" bgcolor="#C0C0C0"><tbody><tr><td><input value="Top" onclick="window.location='0002.HTM'" type="button"></td><td><input value="Tech Topics" onclick="window.location='0003.HTM'" type="button"></td><td><input value="- -" onclick="window.location='0093.HTM'" type="button"></td><td><input value="++" onclick="window.location='0095.HTM'" type="button"></td><td><input value="GoBack" onclick="history.back()" type="button"></td><td><input value="TECH Help! Home Page" onclick="window.location='INDEX.HTM'" type="button"></td></tr></tbody></table></form><h2>General Memory Map</h2><pre>     Overview of the general memory-layout of PC/XT/AT while operating.
+
+Address   Name / Description
+▀▀▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+          ┌─────────────────────────────────────────────────────────────────
+0000:0000 │ Interrupt vector table: 256 4-byte addresses
+──────────┼─────────────────────────────────────────────────────────────────
+0040:0000 │ ROM-BIOS data area.
+──────────┼──────────────────────── See  <a href="http://webpages.charter.net/danrollins/techhelp/0093.HTM">BIOS Data Area</a>  for details
+0050:0000 │ DOS data area.
+──────────┼─────────────────────────────────────────────────────────────────
+xxxx:0000 │ DOS low-level BIOS code (read from IO.SYS on boot disk)
+──────────┼─────────────────────────────────────────────────────────────────
+xxxx:0000 │ DOS interrupt handlers, including <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">INT 21H</a>  (IBMDOS.COM)
+          ├─────────────────────────────────────────────────────────────────
+xxxx:0000 │ DOS buffers, data areas, and installed <a href="http://webpages.charter.net/danrollins/techhelp/0298.HTM">device drivers</a>
+──────────┼─────────────────────────────────────────────────────────────────
+xxxx:0000 │ resident portion of COMMAND.COM
+          │ includes handlers for <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">INT 22H</a>  <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">INT 23H</a> and <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">INT 24H</a>
+──────────┼─────────────────────────────────────────────────────────────────
+xxxx:0000 │ <a href="http://webpages.charter.net/danrollins/techhelp/0020.HTM">TSR</a>-style programs and data
+──────────┼─────────────────────────────────────────────────────────────────
+xxxx:0000 | Currently-executing application program (.COM or .EXE program)
+          | Programs initially own all of memory up to 640K (a000:0000) or
+          | whatever is the memory-ceiling in the PC.
+──────────┼─────────────────────────────────────────────────────────────────
+xxxx:0000 │ Transient portion of COMMAND.COM.  Command processor, internal
+          │ commands, etc.  Gets reloaded if any program overwrites this are
+──────────┼─────────────────────────────────────────────────────────────────
+xxxx:0000 │ Extended BIOS Data Area on <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">PS/2</a> (highest memory below 640K)
+──────────┼─────────────────────────────────────────────────────────────────
+a000:0000 │ On 386+ CPUs, addresses from a000:0 to f000:0 that are not
+ through  │ occupied by ROM are available as UMBs<a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">^</a> when supported by
+e000:ffff │ EMM386.EXE or other memory-management software
+──────────┼─────────────────────────────────────────────────────────────────
+a000:0000 │ <a href="http://webpages.charter.net/danrollins/techhelp/0067.HTM">EGA</a> and <a href="http://webpages.charter.net/danrollins/techhelp/0070.HTM">VGA</a> memory for certain <a href="http://webpages.charter.net/danrollins/techhelp/0114.HTM">video modes</a>
+          ├─────────────────────────────────────────────────────────────────
+b000:0000 │ <a href="http://webpages.charter.net/danrollins/techhelp/0068.HTM">MDA</a> display adapter video memory (also Hercules &amp; clones)
+          ├─────────────────────────────────────────────────────────────────
+b800:0000 │ <a href="http://webpages.charter.net/danrollins/techhelp/0066.HTM">CGA</a> video memory (also Hercules page 2)
+──────────┼─────────────────────────────────────────────────────────────────
+c800:0000 │ External ROM code.  ROM-BIOS looks here (in 2K-block increments)
+ through  │ for code to be executed at boot time.  Such ROMS usually install
+e000:0000 │ a device handler (e.g., hard disk or <a href="http://webpages.charter.net/danrollins/techhelp/0067.HTM">EGA</a> BIOS); see <a href="http://webpages.charter.net/danrollins/techhelp/0266.HTM">ROM-Scan</a>
+          ├─────────────────────────────────────────────────────────────────
+  also    │ Physical paging addresses for <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">EMS</a> expanded memory.
+──────────┼─────────────────────────────────────────────────────────────────
+e000:0000 │ <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">AT</a> motherboard ROM modules in 64K-block increments.
+ through  │ See <a href="http://webpages.charter.net/danrollins/techhelp/0266.HTM">ROM-Scan</a>
+e000:ffff │
+──────────┼─────────────────────────────────────────────────────────────────
+f600:0000 │ ROM-resident BASIC interpreter (ancient IBM-logoed PC only)
+──────────┼─────────────────────────────────────────────────────────────────
+fe00:0000 │ ROM-BIOS: <a href="http://webpages.charter.net/danrollins/techhelp/0264.HTM">POST</a>, boot code, interrupt handlers, the whole banana
+──────────┼─────────────────────────────────────────────────────────────────
+f000:fff0 │ JMP instruction to first opcode to execute on power up or reset
+          ├─────────────────────────────────────────────────────────────────
+f000:fff5 │ BIOS release date (in ASCII)
+          ├─────────────────────────────────────────────────────────────────
+f000:fffe │ IBM PC identification code.  See <a href="http://webpages.charter.net/danrollins/techhelp/0093.HTM">BIOS Data Area</a> (end of table)
+          └─────────────────────────────────────────────────────────────────
+          ┌─────────────────────────────────────────────────────────────────
+ffff:0000 │ This is the <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">High Memory Area</a>, available to 286+ computers.
+ through  │ It is the first 64K (less 16 bytes) of extended<a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">^</a> memory, but is
+ffff:fff0 │ set up to be accessible while in real mode.
+          └─────────────────────────────────────────────────────────────────
+█▌Above 1M▐█
+  Area above 1 MB is extended<a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">^</a> memory available to AT-class computers via
+  BIOS function <a href="http://webpages.charter.net/danrollins/techhelp/0212.HTM">INT 15H</a> and (when HIMEM.SYS or other XMS provider is
+  installed) <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">XMS Services</a>.  The CPU is switched into protected mode to make
+  this memory accessible.  See also: <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">About DPMI</a>.
+
+  Extended memory is currently used by DOS only for RAM-disk, disk caching,
+  and by a few DOS TSRs.
+
+  Windows, OS/2, Xenix, and other operating systems or control programs may
+  use this area for multitasking or general-purpose memory.
+
+See Also: <a href="http://webpages.charter.net/danrollins/techhelp/0093.HTM">BIOS Data Area</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/0071.HTM">EGA/VGA Data Areas</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">I/O Port Map</a>
+                                    -*-
+</pre>
+</body></html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!-- saved from url=(0061)https://www.powerbasic.com/help/pbcc/effective_addressing.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Effective addressing</title>
+
+<meta name="keywords" content="power basic compiler, powerbasic downloads, BASIC programming, pbdll, turbo basic, qbasic compiler, visual basic, vb">
+<link rel="stylesheet" href="./Effective addressing_files/pbcc_ns.css"><script type="text/javascript" language="JavaScript" title="WebHelpSplitCss">
+<!--
+if (navigator.appName !="Netscape")
+{   document.write("<link rel='stylesheet' href='pbcc.css'>");}
+//-->
+</script>
+<style type="text/css">
+<!--
+p.whs1 { font-weight:bold; }
+p.whs2 { margin-left:40px; }
+-->
+</style><script type="text/javascript" language="JavaScript" title="WebHelpInlineScript">
+<!--
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//-->
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute; left:0px; top:0px; z-index:4; visibility:hidden; }
+-->
+</style><script type="text/javascript" language="javascript1.2" src="./Effective addressing_files/whtopic.js"></script></head><body><div id="scrollbarDIV" style="LEFT:10px; WIDTH:3px; POSITION:absolute; TOP:0px; HEIGHT:100%; BACKGROUND-COLOR:lightgrey; visibility:hidden; Z-INDEX:100; BORDER-WIDTH:1px; BORDER-COLOR:darkgray; BORDER-RIGHT-STYLE:solid; BORDER-LEFT-STYLE:solid;"></div><div id="relatedTopicsDIV" style="position:absolute; left:0px; top:0px; z-index:4; visibility:hidden;"></div>
+<script type="text/javascript" language="javascript1.2" src="./Effective addressing_files/whutils.js"></script>
+<script type="text/javascript" language="javascript" src="./Effective addressing_files/whver.js"></script>
+<script type="text/javascript" language="javascript1.2">
+    <!--
+    var linkedScrollbarStyle = "<link rel='stylesheet' href='wf_topics.css'>";
+    if( (!isTopicOnly()) &&(parent.gbFHPureHtml == null) )
+    {
+        document.write(linkedScrollbarStyle);
+    }
+    //-->
+</script>
+
+<script type="text/javascript" language="javascript1.2">
+<!--
+if (window.addTocInfo)
+{
+addTocInfo("The Inline Assembler\nEffective addressing");
+addAvenueInfo("Untitled","addressing_and_pointers.htm","passing_parameters.htm");
+
+  addShowButton();
+}
+if (window.setRelStartPage)
+{
+setRelStartPage("index.htm");
+
+	sendTopicLoaded();
+	autoSync(1);
+	sendSyncInfo();
+	sendAveInfo();
+	sendBgColorInfo();
+}
+//-->
+</script><table width="100%"><tbody><tr><td width="33%"><div align="left"><table cellpadding="2" cellspacing="0" border="0"><tbody><tr><td><a class="whtbtnshow" href="javascript:void(0);" onclick="show();return false;">Show</a></td></tr></tbody></table> </div></td></tr></tbody></table><style type="text/css">.whtbtnshow{font-family:;font-size:10pt;font-style:;font-weight:;text-decoration:;color:;}</style>
+<h1>Effective addressing</h1>
+
+<p><span style="color: #010100;"><font color="#010100">The notation to calculate the effective 
+ address of data in memory can look complicated but it is in fact very 
+ clear and precise notation.&nbsp; In the range of allowable notation for 
+ Intel 80x86 assembler, an address in memory can be placed in a <a href="https://www.powerbasic.com/help/pbcc/registers.htm">register</a> 
+ and treated directly as a memory operand by enclosing it in square brackets.</font></span></p>
+
+<p class="SampleCode">! MOV EAX, lpArray ; Copy address into EAX</p>
+
+<p class="SampleCode">! MOV ECX, [EAX]&nbsp;&nbsp; ; Copy 1st item in array 
+ into ECX</p>
+
+<p class="SampleCode">! ADD EAX, 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; 
+ Increment the array location by 4 bytes</p>
+
+<p class="SampleCode">! MOV ECX, [EAX]&nbsp;&nbsp; ; Copy 2nd item in array 
+ into ECX</p>
+
+<p class="InlineNormal3">This works fine in simple situations where the register 
+ that has the address is manually incremented or decremented by the data 
+ size each time it is accessed, but there is a much more powerful and flexible 
+ technique available by using the standard Intel notation that is available.</p>
+
+<p><span style="color: #010100;"><font color="#010100">The Intel 80x86 allows the following format 
+ to calculate the effective address of a value in memory:</font></span></p>
+
+<p class="SampleCode">[ Base Address + Index * Scale + Displacement ]</p>
+
+<p class="InlineNormal13"><i style="font-style: italic;"><span style="color: #010100;"><font color="#010100">Base 
+ Address</font></span></i><span style="color: #010100;"><font color="#010100">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ The register that has the starting address or <i>base address </i>of the 
+ array (or buffer) in memory.</font></span></p>
+
+<p class="InlineNormal13"><i style="font-style: italic;"><span style="color: #010100;"><font color="#010100">Index</font></span></i><span style="color: #010100;"><font color="#010100">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ The register used to determine the offset from the base address.</font></span></p>
+
+<p class="InlineNormal13"><i style="font-style: italic;"><span style="color: #010100;"><font color="#010100">Scale</font></span></i><span style="color: #010100;"><font color="#010100">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ The data size based multiplier for the index.</font></span></p>
+
+<p class="InlineNormal13"><i style="font-style: italic;"><span style="color: #010100;"><font color="#010100">Displacement</font></span></i><span style="color: #010100;"><font color="#010100">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The additional 
+ offset adjustment from the base address.</font></span></p>
+
+<p><span style="color: #010100;"><font color="#010100">For example:</font></span></p>
+
+<p class="SampleCode">[EBX + ECX * 4 + 8]</p>
+
+<p class="SampleCode">&nbsp;</p>
+
+<p class="SampleCode">EBX is the <i>Base Address</i></p>
+
+<p class="SampleCode">ECX is the <i>Index</i></p>
+
+<p class="SampleCode">4&nbsp;&nbsp; is the <i>Scale</i> based on the data 
+ size</p>
+
+<p class="SampleCode">8&nbsp;&nbsp; is the <i>Displacement</i> in BYTES</p>
+
+<p class="InlineNormal1"><span style="color: #010100;"><font color="#010100">Not all of the additional 
+ notation has to be used.&nbsp; For example, in a <a href="https://www.powerbasic.com/help/pbcc/byte_(_).htm">Byte</a> 
+ <a href="https://www.powerbasic.com/help/pbcc/array_data_types.htm">array</a>, you can just use the <i>base 
+ address</i> and the <i>index</i>:</font></span></p>
+
+<p class="SampleCode">! MOV AL, [EBX + ECX]</p>
+
+<p class="InlineNormal3">The advantage of this technique is that you set 
+ the base address once and vary the index.&nbsp; In the case above, ECX 
+ is the index.&nbsp; In terms of flexibility, you have the choice of varying 
+ the base address, the index, and the displacement so that you can access 
+ data in memory by a number of different methods that best suit your code.</p>
+
+<p><span style="color: #010100;"><font color="#010100">The only difference when using data sizes 
+ larger than Byte is that you multiply the "index" by the "scale" 
+ of the data size:</font></span></p>
+
+<p class="SampleCode">! MOV EAX, [EBX + ECX * 4]</p>
+
+<p class="InlineNormal1"><span style="color: #010100;"><font color="#010100">To make a practical 
+ example let us assume we have an array of 64 items that were each 32-bits 
+ in size, and we wanted to read the 16th member of that 32-bit array.&nbsp; 
+ In this case, we would copy the 16th member of the zero-based index into 
+ the register that we are using as the <i>index</i>.&nbsp; Next, copy the 
+ address of the array into the register that you are using as the <i>base 
+ address</i>, and finally read the value of the array member into another 
+ register.</font></span></p>
+
+<p class="SampleCode">! MOV ESI, lpArray&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ ; Base address register</p>
+
+<p class="SampleCode">! MOV ECX, 15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ ; Zero-based index register</p>
+
+<p class="SampleCode">! MOV EAX, [ESI + ECX * 4] ; Copy the value into EAX</p>
+
+<p class="InlineNormal3">These three lines of code read the target value 
+ from the array into the EAX register.</p>
+
+<p><span style="color: #010100;"><font color="#010100">If we wanted to compare the 16th and 17th 
+ members of the array and not have to use an additional register, we can 
+ add the required displacement so that we only have an extra line of code:</font></span></p>
+
+<p class="SampleCode">! MOV EAX, [ESI + ECX * 4]</p>
+
+<p class="SampleCode">! CMP EAX, [ESI + ECX * 4 + 4]</p>
+
+<p class="InlineNormal3">To compare the 17th and 18th members of the array, 
+ all we need to do is increment the index:</p>
+
+<p class="SampleCode">! INC ECX</p>
+
+<p class="InlineNormal3">Writing to the array is simply the reverse of reading 
+ it.&nbsp; With the same code as above:</p>
+
+<p class="SampleCode">! MOV ESI, lpArray&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ ; Base address register</p>
+
+<p class="SampleCode">! MOV ECX, 15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ ; Zero-based index register</p>
+
+<p class="SampleCode">! MOV EAX, 1234</p>
+
+<p class="SampleCode">! MOV [ESI + ECX * 4], EAX</p>
+
+<p class="InlineNormal1"><span style="color: #010100;"><font color="#010100">We can also write 
+ an <i>immediate</i> (literal) number to the array but it takes a slightly 
+ different notation:</font></span></p>
+
+<p class="SampleCode">! MOV DWORD PTR [ESI + ECX * 4], 1234</p>
+
+<p class="InlineNormal3">The extra notation "DWORD PTR" is because 
+ there is no way for the assembler to determine the data size from either 
+ the memory operand for the array or the immediate number.&nbsp; Specifying 
+ the size tells PowerBASIC what data size should be written to the address 
+ contained in the memory operand.</p>
+
+<p><span style="color: #010100;"><font color="#010100">A very similar notation is used when an 
+ array is placed on the stack by creating a <a href="https://www.powerbasic.com/help/pbcc/local_statement.htm">LOCAL</a> 
+ variable.&nbsp; With a <a href="https://www.powerbasic.com/help/pbcc/the_stack.htm">stack</a> variable <i>MyArray</i>, 
+ PowerBASIC resolves this variable to an address on the stack, which will 
+ be something like this:</font></span></p>
+
+<p class="SampleCode">x&amp; = VARPTR(Myarray(0)) ' first element <br>
+! mov edx, x&amp; <br>
+! mov ecx, 3 <br>
+! mov eax, [edx][ecx*4] ' assuming 32-bit integer <br>
+<br>
+' eax = MyArray(3) ' 4th element of MyArray </p>
+
+<p class="SampleCode">&nbsp;</p>
+
+<p class="whs1">See Also</p>
+
+<p class="whs2"><a href="https://www.powerbasic.com/help/pbcc/the_inline_assembler.htm">The Inline 
+ Assembler</a></p>
+
+<p class="whs2"><a href="https://www.powerbasic.com/help/pbcc/addressing_and_pointers.htm">Addressing 
+ and pointers</a></p>
+
+<p class="whs2"><a href="https://www.powerbasic.com/help/pbcc/registers.htm">Registers</a></p>
+
+<p class="whs2"><a href="https://www.powerbasic.com/help/pbcc/passing_parameters.htm">Passing 
+ parameters</a></p>
+
+<p class="SampleCode">&nbsp;</p>
+
+
+
+</body></html>

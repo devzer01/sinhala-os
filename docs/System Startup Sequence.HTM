@@ -1,0 +1,293 @@
+<html><!-- This document Copyright � 1997 by Dan Rollins --><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>System Startup Sequence</title></head>
+
+<body><form><table border="5" bgcolor="#C0C0C0"><tbody><tr><td><input value="Top" onclick="window.location='0002.HTM'" type="button"></td><td><input value="Tech Topics" onclick="window.location='0003.HTM'" type="button"></td><td><input value="- -" onclick="window.location='0262.HTM'" type="button"></td><td><input value="++" onclick="window.location='0264.HTM'" type="button"></td><td><input value="GoBack" onclick="history.back()" type="button"></td><td><input value="TECH Help! Home Page" onclick="window.location='INDEX.HTM'" type="button"></td></tr></tbody></table></form><h2>System Startup Sequence</h2><pre>
+ When you turn your computer on, it runs through some built-in diagnostic
+
+ tests (called the POST or <a href="http://webpages.charter.net/danrollins/techhelp/0264.HTM">Power-On Self-Test</a>).  If it detects a problem
+
+ during these tests, you may see an error code (see <a href="http://webpages.charter.net/danrollins/techhelp/0265.HTM">POST Error Codes</a>) or
+
+ perhaps a full-screen interactive configuration utility will appear (this
+
+ varies from machine to machine, depending on the brand of computer you
+
+ have and the maker of its ROM-BIOS).
+
+
+
+ After the POST, but before booting the disk, the ROM-BIOS performs
+
+ <a href="http://webpages.charter.net/danrollins/techhelp/0266.HTM">ROM-Scan</a> to see if any hardware adaptors have installed ROM into the
+
+ areas between c000:0 and e000:0.
+
+
+
+ Once the system gets past the POST and ROM-Scan, the sequence is basically
+
+ the same for all IBM-compatible computers.  The following steps occur
+
+ after the POST or whenever you press Ctrl+Alt+Del to reboot:
+
+
+
+   1) If a diskette is in drive A, the boot sector of that drive is read
+
+      and the system attempts to boot using system files from the diskette.
+
+      If it is not a system disk, a message such as...
+
+
+
+           Non-System disk or disk error
+
+           Replace and press any key when ready
+
+
+
+      ...appears.  You can do as it requests, or just press any key to boot
+
+      from your hard disk.
+
+
+
+      If no diskette is in drive A, the system attempts to boot from your
+
+      first hard disk (always drive C).  The <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">Master Boot Record</a> (MBR)
+
+      of the hard disk is read into memory and executed.
+
+
+
+      The program code in MBR looks at the <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">disk partition table</a> (also in
+
+      the MBR) and determines which operating system to start.  For most of
+
+      us, the hard disk contains a single operating system -- MS-DOS 6 (you
+
+      may use Fdisk to activate a different operating system).  The first
+
+      sector of the active partition is used as the boot sector for that
+
+      operating system.  From here on, the boot sequence is the same for
+
+      hard disks and diskettes.
+
+
+
+   2) The boot sector is read into memory and executed.  It contains
+
+      instructions to look for two files in the root of the startup disk.
+
+
+
+      IO.SYS contains the standard device drivers along with code that
+
+      processes the rest of the boot sequence (IBMBIO.SYS in PC-DOS).
+
+
+
+      MSDOS.SYS contains the code to handle DOS low-level function calls,
+
+      including INT 21h services (IBMDOS.SYS in PC-DOS).
+
+
+
+      The files are loaded into memory and control passes to IO.SYS.
+
+
+
+   3) IO.SYS looks for DBLSPACE.BIN in the root of the boot disk.  If
+
+      found, it is loaded into the upper part of conventional<a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">^</a> memory.
+
+
+
+      DBLSPACE.BIN intercepts all disk I/O services.  When it initializes,
+
+      it looks for <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">DBLSPACE.INI</a> (also in the root) and using information it
+
+      contains, it may swap one or more drive IDs.
+
+
+
+      If either DBLSPACE.BIN or DBLSPACE.INI is not found, then <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">DoubleSpace</a>
+
+      support will not be present.
+
+
+
+      Note:    With DOS 6.2+, you can bypass this early load of
+
+      DBLSPACE.BIN by pressing Ctrl+F5 when you boot.
+
+
+
+   4) IO.SYS displays:
+
+
+
+           Starting MS-DOS...
+
+
+
+      It then looks for a text file<a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">^</a> named <a href="http://webpages.charter.net/danrollins/techhelp/0267.HTM">CONFIG.SYS</a> in the root of the
+
+      boot disk.  If found, it is read and processed as a series of
+
+      configuration commands.  If SWITCHES=/F is not found, there is a
+
+      2-second delay.  In this interval, you can press F5 (see <a href="http://webpages.charter.net/danrollins/techhelp/0269.HTM">Clean Boot</a>)
+
+      or F8 (see <a href="http://webpages.charter.net/danrollins/techhelp/0270.HTM">Interactive Boot</a>) to control the rest of the boot
+
+      sequence.
+
+
+
+      Note that when DoubleSpace is active, DBLSPACE.BIN has already
+
+      intercepted disk I/O calls (and swapped drive C), so IO.SYS will find
+
+      CONFIG.SYS on the compressed volume.
+
+
+
+   5) If CONFIG.SYS contains a <a href="http://webpages.charter.net/danrollins/techhelp/0271.HTM">MultiConfig menu</a>, then the menu is
+
+      displayed:
+
+          MS-DOS 6 Startup Menu
+
+          ���������������������
+
+          1. option
+
+          2. option
+
+          ... etc. ...
+
+
+
+          Enter a choice: _
+
+
+
+      It prompts for user input.  The <a href="http://webpages.charter.net/danrollins/techhelp/0288.HTM">MENUDEFAULT=</a> command can specify a
+
+      time-out value to continue the boot without waiting for a keystroke.
+
+
+
+      The <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">CONFIG</a> e-var is set to match the option chosen.
+
+
+
+   6) IO.SYS executes all commands in <a href="http://webpages.charter.net/danrollins/techhelp/0271.HTM">[COMMON]</a> sections (including the
+
+      "implied [COMMON]" area before the first section or the <a href="http://webpages.charter.net/danrollins/techhelp/0271.HTM">[MENU]</a> line).
+
+      It then proceeds to execute the particular commands specified in the
+
+      selected (or default) section.
+
+
+
+      Note that IO.SYS does not necessarily run commands in the order they
+
+      appear in CONFIG.SYS.  It internally reorders commands into groups
+
+      and then executes the groups in this order:
+
+    
+
+      � DOS=, SWITCHES=, SET etc. general configuration commands.
+
+    
+
+      � DEVICE= and DEVICEHIGH= <a href="http://webpages.charter.net/danrollins/techhelp/0298.HTM">device driver</a> installation commands.
+
+        Note that drive letters are assigned according to the order in
+
+        which the device drivers are loaded in CONFIG.SYS.
+
+    
+
+      � INSTALL= and INSTALLHIGH= TSR installation commands.
+
+
+
+      MultiConfig menu sections cannot override this general order; for
+
+      instance, you can't run an <a href="http://webpages.charter.net/danrollins/techhelp/0283.HTM">INSTALL=</a> line before a <a href="http://webpages.charter.net/danrollins/techhelp/0276.HTM">DEVICE=</a> line.
+
+
+
+   7) If a <a href="http://webpages.charter.net/danrollins/techhelp/0292.HTM">SHELL=</a> command appears in CONFIG.SYS, then the program it
+
+      identifies will be used as the DOS command processor.  If not, then
+
+      the file COMMAND.COM will be used.  IO.SYS will look for COMMAND.COM
+
+      in the root of the boot disk, and if not found, it will search \DOS
+
+      and \MSDOS.
+
+
+
+      IO.SYS sets the <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">COMSPEC</a> e-var to identify the command processor.
+
+
+
+   8) COMMAND.COM initially sets up a minimal <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">DOS environment</a> containing a
+
+      simple path (PATH=C:\DOS) and a standard prompt (PROMPT=$p$g).
+
+
+
+   9) By default, COMMAND.COM looks for a text file<a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">^</a> named AUTOEXEC.BAT in
+
+      the root of the boot disk and begins executing the commands it
+
+      contains.
+
+
+
+    Note: with DOS 6.0+, You can force COMMAND.COM to execute a different
+
+          startup batch by using <a href="http://webpages.charter.net/danrollins/techhelp/0292.HTM">SHELL=</a>d:\path\command.com /K=batfile.bat
+
+          in CONFIG.SYS.
+
+
+
+ AUTOEXEC.BAT can be tailored to execute a different set of commands for
+
+ each of the MultiConfig menu options by testing the <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">CONFIG</a> e-var.
+
+
+
+ Finally, the command processor displays the command prompt and you may
+
+ begin interactive computing.
+
+
+
+See Also: <a href="http://webpages.charter.net/danrollins/techhelp/0267.HTM">CONFIG.SYS Commands</a>
+
+          <a href="http://webpages.charter.net/danrollins/techhelp/0269.HTM">Clean Boot</a>
+
+          <a href="http://webpages.charter.net/danrollins/techhelp/0270.HTM">Interactive Boot</a>
+
+          <a href="http://webpages.charter.net/danrollins/techhelp/0271.HTM">MultiConfig Menus</a>
+
+          <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">DoubleSpace</a>
+
+          <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">Predefined Environment Variables</a>
+
+                                    -*-
+
+</pre>
+
+</body></html>

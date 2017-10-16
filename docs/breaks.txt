@@ -1,0 +1,4 @@
+break *0x7c00
+break *0x7c41
+break *0xf000e82e
+trace *0x000000000000e82e

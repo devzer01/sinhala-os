@@ -1,0 +1,33 @@
+<html><!-- This document Copyright � 1997 by Dan Rollins --><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>INT 10H 1130H: Get Current Character Generator Info</title></head>
+<body><form><table border="5" bgcolor="#C0C0C0"><tbody><tr><td><input value="Top" onclick="window.location='0002.HTM'" type="button"></td><td><input value="Tech Topics" onclick="window.location='0003.HTM'" type="button"></td><td><input value="- -" onclick="window.location='0165.HTM'" type="button"></td><td><input value="++" onclick="window.location='0167.HTM'" type="button"></td><td><input value="GoBack" onclick="history.back()" type="button"></td><td><input value="TECH Help! Home Page" onclick="window.location='INDEX.HTM'" type="button"></td></tr></tbody></table></form><h2>INT 10H 1130H: Get Current Character Generator Info</h2><pre>                                                      Compatibility: EGA VGA
+ Expects: AX    1130H
+          BH    request code: 00H = get addr at <a href="http://webpages.charter.net/danrollins/techhelp/0257.HTM">INT 1fH</a> vector
+                              01H = get addr at <a href="http://webpages.charter.net/danrollins/techhelp/0260.HTM">INT 43H</a> vector
+                              02H = get addr of ROM 8x14 font
+                              03H = get addr of ROM 8x8 font
+                              04H = get addr of ROM 8x8 font (2nd half)
+                              05H = get addr of ROM 9x14 alternate font
+                       (VGA)  06H = get addr of ROM 8x16 font
+                       (VGA)  07H = get addr of ROM 8x16 alternate font
+          ������������������������������������������������������������������
+ Returns: CX    height (scan-lines) / bytes per character (from 0040:0085)
+          DL    screen rows (from 0040:0084)
+          ES:BP address of requested font-definition table
+          ������������������������������������������������������������������
+    Info: This provides a means to locate ROM-defined character-definition
+          tables.
+
+          A typical use would be to copy the table data, make some custom
+          modifications, then modify the <a href="http://webpages.charter.net/danrollins/techhelp/0071.HTM">EGA/VGA Data Areas</a> to point to you
+          changed table, and then use <a href="http://webpages.charter.net/danrollins/techhelp/0020.HTM">TSR</a> function to make the changes
+          permanent.
+
+          The tables are always CX*256 bytes long.
+
+See Also: <a href="http://webpages.charter.net/danrollins/techhelp/0151.HTM">INT 10H 11H: EGA/VGA Character Generator Functions</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/0113.HTM">INT 10H: Video Services</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/0071.HTM">EGA/VGA Data Areas</a>
+                                    -*-
+</pre>
+</body></html>

@@ -1,0 +1,194 @@
+* ----------------------------------------------------------------------
+* Copyright IBM Corporation 1989. All rights reserved.
+* C-H 3-3220-050       : REGISTRY, Graphic Character Sets and Code Pages
+* Char. Set (GCSGID)   : 01176
+* Common Name          : Thai Extended (EBCDIC/PC Common)
+* Registration Date    : 1989
+* Last Revision Date   :
+* Size                 : 180
+* Principal Code Pages
+* Containing this CSet : 00838, 00874
+* ----------------------------------------------------------------------
+*-GCGID ---------- GCGID Name ------------------------------------------
+BA100000           Mai Han-Akat
+BA200000           Sara A
+BA300000           Sara Aa
+BA400000           Sara Am
+BA500000           Sara Ai maimuan
+BA600000           Sara Ai maimalai
+BA700000           Lakkhangyao
+BB100000           Bo Baimai
+BC100000           Cho Chan
+BD100000           Do Chada
+BD200000           Do Dek
+BE100000           Maitaikhu
+BE200000           Sara E
+BE300000           Sara Ae
+BF100000           Fo Fa
+BF200000           Fo Fan
+BH100000           Ho Hip
+BH200000           Ho Nokhuk
+BI100000           Sara I
+BI200000           Sara Ii
+BK100000           Ko Kai
+BK200000           Kho Khai
+BK300000           Kho Khuat
+BK400000           Kho Khwai
+BK500000           Kho Khon
+BK600000           Kho Rakhang
+BL100000           Lo Ling
+BL200000           Lu
+BL300000           Lo Chula
+BM100000           Mo Ma
+BN100000           Ngo Ngu
+BN200000           No Nen
+BN300000           No Nu
+BN400000           Nikkhahit
+BO100000           O Ang
+BO200000           Sara O
+BP100000           Po Pla
+BP200000           Pho Phung
+BP300000           Pho Phan
+BP400000           Pho Samphao
+BQ100000           Maiyamok
+BQ200000           Paiyannoi
+BQ300000           Phinthu
+BR100000           Ro Rua
+BR200000           Ru
+BS100000           Cho Chang
+BS200000           So Sala
+BS300000           So Rusi
+BS400000           So Sua
+BT100000           To Patak
+BT200000           Tho Than
+BT300000           Tho Nangmontho
+BT400000           Tho Phuthao
+BT500000           To Tao
+BT600000           Tho Thung
+BT700000           Tho Thahan
+BT800000           Tho Thong
+BU100000           Sara Ue
+BU200000           Sara Uee
+BU300000           Sara U
+BU400000           Sara Uu
+BW100000           Wo Waen
+BX100000           Cho Ching
+BX200000           So So
+BX300000           Cho Choe
+BY100000           Yo Ying
+BY200000           Yo Yak
+BZ100000           Mai Ek
+BZ200000           Mai Tho
+BZ300000           Mai Tri
+BZ400000           Mai Chattawa
+BZ500000           Thanthakhat
+LA010000           a Small
+LA020000           A Capital
+LB010000           b Small
+LB020000           B Capital
+LC010000           c Small
+LC020000           C Capital
+LD010000           d Small
+LD020000           D Capital
+LE010000           e Small
+LE020000           E Capital
+LF010000           f Small
+LF020000           F Capital
+LG010000           g Small
+LG020000           G Capital
+LH010000           h Small
+LH020000           H Capital
+LI010000           i Small
+LI020000           I Capital
+LJ010000           j Small
+LJ020000           J Capital
+LK010000           k Small
+LK020000           K Capital
+LL010000           l Small
+LL020000           L Capital
+LM010000           m Small
+LM020000           M Capital
+LN010000           n Small
+LN020000           N Capital
+LO010000           o Small
+LO020000           O Capital
+LP010000           p Small
+LP020000           P Capital
+LQ010000           q Small
+LQ020000           Q Capital
+LR010000           r Small
+LR020000           R Capital
+LS010000           s Small
+LS020000           S Capital
+LT010000           t Small
+LT020000           T Capital
+LU010000           u Small
+LU020000           U Capital
+LV010000           v Small
+LV020000           V Capital
+LW010000           w Small
+LW020000           W Capital
+LX010000           x Small
+LX020000           X Capital
+LY010000           y Small
+LY020000           Y Capital
+LZ010000           z Small
+LZ020000           Z Capital
+ND010000           One
+ND010002           One, Thai
+ND020000           Two
+ND020002           Thai Digit Two
+ND030000           Three
+ND030002           Thai Digit Three
+ND040000           Four
+ND040002           Thai Digit Four
+ND050000           Five
+ND050002           Thai Digit Five
+ND060000           Six
+ND060002           Thai Digit Six
+ND070000           Seven
+ND070002           Thai Digit Seven
+ND080000           Eight
+ND080002           Thai Digit Eight
+ND090000           Nine
+ND090002           Thai Digit Nine
+ND100000           Zero
+ND100002           Thai Digit Zero
+SA010000           Plus Sign
+SA030000           Less Than Sign/Greater Than Sign (Arabic)
+SA040000           Equal Sign
+SA050000           Greater Than Sign/Less Than Sign (Arabic)
+SC030000           Dollar Sign
+SC040000           Cent Sign
+SC130000           Currency Symbol Baht
+SD130000           Grave Accent
+SD150000           Circumflex Accent
+SD190000           Tilde Accent
+SM010000           Number Sign
+SM020000           Percent Sign
+SM030000           Ampersand
+SM040000           Asterisk
+SM050000           At Sign
+SM060000           Left Bracket
+SM070000           Backslash
+SM080000           Right Bracket
+SM110000           Left Brace
+SM130000           Vertical Line/Logical OR
+SM140000           Right Brace
+SM650000           Vertical Line, Broken
+SM660000           Logical NOT/End Of Line Symbol
+SP020000           Exclamation Point
+SP040000           Quotation Marks
+SP050000           Apostrophe
+SP060000           Left Parenthesis
+SP070000           Right Parenthesis
+SP080000           Comma
+SP090000           Underline/Continuous Underscore
+SP100000           Hyphen/Minus Sign
+SP110000           Period/Full Stop
+SP120000           Slash
+SP130000           Colon
+SP140000           Semicolon
+SP150000           Question Mark
+/* END of table --------------------------------------------------------
+

@@ -1,0 +1,1346 @@
+include d:\bc\asm\procerr.inc
+;/* dosfont - by tmb - 07/1995
+;
+;    dosfont version 1.0, 1995 Copyright (C) T.Blader
+;    dosfont comes with ABSOLUTELY NO WARRANTY.
+;    This is free software, and you are welcome to redistribute it
+;    under certain conditions
+;
+;    This program is free software; you can redistribute it and/or modify
+;    it under the terms of the GNU General Public License as published by
+;    the Free Software Foundation; either version 2 of the License, or
+;    (at your option) any later version.
+;
+;    This program is distributed in the hope that it will be useful,
+;    but WITHOUT ANY WARRANTY; without even the implied warranty of
+;    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;    GNU General Public License for more details.
+;
+;    You should have received a copy of the GNU General Public License
+;    along with this program; if not, write to the Free Software
+;    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+;
+
+
+MODEL  tiny                             ;/* Creating a COM file */
+P286
+EXTRN CommandParams:proc, Fopen:proc, Fread:proc, Fclose:proc
+.DATA
+
+ENV_SEG                EQU  2Ch         ;/* addr of env block pointed by psp */
+INSTALLED              EQU  0           ;/* */
+RESIDENT               EQU  3           ;/**/
+DEINSTALLED            EQU  4           ;/**/
+CANT_FREE_MEM          EQU  5
+ADDRESS                EQU  6
+INTNUM		           EQU  10h         ;/* BIOS interrupt */
+FONT_LOAD              EQU  11H         ;/* BIOS call to load a font table */
+OLD_INT_RES_OFF        EQU  94H         ;/* offset into resident code for */
+VGA_INFO               EQU  20
+FONT_FILE_SIZE         EQU  4096d
+
+;/* colors */
+C_VERSION              EQU  1eh
+C_MAIN_VGA_TEXT        EQU  07h
+C_MAIN_VGA             EQU  0fh
+C_SUB_VGA_TEXT         EQU  07h
+C_SUB_VGA              EQU  0fh
+C_NO_PARAMS            EQU  03h
+C_CATCH_ALL            EQU  8ch
+C_INSTALL_SUCCESS      EQU  8ah
+C_FILE_NAME            EQU  0fh
+C_DEINSTALLED          EQU  07h
+C_RESIDENT             EQU  0ch
+C_ERROR                EQU  0ch
+C_TRAP_STAT            EQU  03h
+C_NO_R_SWITCH          EQU  87h
+C_SEGMENT              EQU  0dh
+C_OFFSET               EQU  0ah
+
+
+;/* PSP offsets for command line */
+FONT_FILE              EQU  [PtrSwitch]     ;/* real offset in psp of file */
+SWITCH_1               EQU  [PtrSwitch[2]]  ;/* real offset in psp of sw1  */
+SWITCH_2               EQU  [PtrSwitch[4]]  ;/* ... of sw2 */
+SWITCH_3               EQU  [PtrSwitch[6]]  ;/**/
+
+
+
+.CODE
+ORG 100H
+.STARTUP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ S t a r t u p  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+DosFont PROC
+
+;//    CALL cs:IsrHandler
+    call CheckVGA                       ;/* checks for presence of VGA */
+    cmp cs:[VGAFlag], FALSE
+    jne DF_CONT
+
+    mov dx, offset NoVGAFound
+    mov TextColor, 7
+    call print
+
+    jmp DF_EXIT
+
+DF_CONT:
+    call CheckIfInstalled               ;/* check if tsr is resident */
+
+    cmp IsrInstalled, TRUE              ;/* check installed flag is set */
+    jne NOT_INSTALLED                   ;/* continue if FALSE */
+
+    call DeInstall                      ;/* remove isr from memory */
+
+DF_EXIT:
+    mov ax, 4c00h
+    int 21h
+
+NOT_INSTALLED:
+    call Installer                     ;/* load up font and handler */
+
+DosFont ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ I S R   P r o c e d u r e ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+IsrHandler PROC far
+    jmp short CALL_OLD_INT
+    shit db 'DOSFONT'
+
+CALL_OLD_INT:
+    pushf
+        int 60h
+        cli
+           mov cs:[Rah], ah
+           mov cs:[Ral], al
+           mov cs:[Rbh], bh
+           mov cs:[Rbl], bl
+           mov cs:[Rch], ch
+           mov cs:[Rcl], cl
+           mov cs:[Rdh], dh
+           mov cs:[Rdl], dl
+        sti
+    popf
+
+    pushf
+    call dword ptr cs:OldInt              ;/* call original bios interrupt */
+
+    cmp word ptr cs:[InProc], TRUE        ;/* check if this tsr is processing */
+        je short IN_PROCESS               ;/* get out if true */
+    mov word ptr cs:[InProc], TRUE        ;/* else, set process flag */
+
+    push ax                             ;/* save the regs */
+    push bx                             ;/**/
+    push cx                             ;/**/
+    push dx                             ;/**/
+    push si                             ;/**/
+    push di                             ;/**/
+    push ds                             ;/**/
+    push es                             ;/**/
+    push bp                             ;/**/
+    pushf
+
+    push ax
+         mov ax, cs
+         mov ds, ax
+    pop ax
+
+    cmp Rah, 0
+    je short LOAD_FONT
+
+NO_VMODE:
+    cmp Rah, 11H                    ;/* check for another font loading */
+    je short CHECK_FONT_TRAP       ;/* check for font trapping */
+
+    cmp Rah, 12h
+    je short CHECK_ALTERNATE_SELECT
+
+    jmp short EXIT                     ;/* exit */
+
+
+CHECK_ALTERNATE_SELECT:
+    cmp Ral, 03h
+    je short LOAD_FONT
+
+    cmp Ral, 0D0h
+    je short LOAD_FONT
+
+    jmp short EXIT
+
+
+CHECK_FONT_TRAP:                       ;/* check for font trap disabled */
+    ;//cmp cs:[FontTrap], FALSE           ;/* Trap font loads via int 10h ?? */
+    ;//je short EXIT                      ;/* exit if font no trapping */
+
+    jmp short EXIT
+
+
+LOAD_FONT:
+    call LoadFont                      ;/* load the font table again */
+
+EXIT:
+    mov word ptr cs:[InProc], FALSE
+
+    popf                               ;/* restore the regs */
+    pop bp
+    pop es                             ;/**/
+    pop ds                             ;/**/
+    pop di                             ;/**/
+    pop si                             ;/**/
+    pop dx                             ;/**/
+    pop cx                             ;/**/
+    pop bx                             ;/**/
+    pop ax                             ;/**/
+
+IN_PROCESS:
+
+    iret
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ L o a d F o n t  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+LoadFont PROC
+    push ax                            ;/* save regs used by LoadFont */
+    push bx                            ;/**/
+    push cx                            ;/**/
+    push dx                            ;/**/
+    push es                            ;/**/
+
+    mov ah, 0fh
+    int 10h
+
+    cmp al, MODE_1                     ;/* only load in text modes  */
+        je short LF1                   ;/* on a mode reset which    */
+    cmp al, MODE_2                     ;/* loads the default font   */
+        je short LF1                   ;/* table from ROM BIOS      */
+    cmp al, MODE_3                     ;/**/
+        je short LF1                   ;/**/
+    cmp al, MODE_4                     ;/**/
+        je short LF1                   ;/**/
+    cmp al, MODE_5                     ;/**/
+        je short CHECK_MONO_TRAP       ;/**/
+    cmp al, 83h                        ;/* borland C ide call */
+        je short LF1
+
+    jmp short LF_EXIT                   ;/* get out, must be gfx mode */
+
+CHECK_MONO_TRAP:
+    cmp cs:[MonoTrap], FALSE             ;/* Load font when in mode 7 ? */
+    je LF1                             ;/* reload font if disabled */
+
+    jmp LF_EXIT                         ;/* otherwise exit, it is enabled */
+
+LF1:
+    mov ax, BYTES_PER_CHAR             ;/* Load the resident font table */
+    shl ax, 8                          ;/**/
+    or ax, BLOCK_TO_LOAD               ;/**/
+    mov cs:[ByteBlock], ax               ;/**/
+
+    push cs                            ;/* cs/ds is same as es */
+    pop es                             ;/**/
+
+    mov ax, 1100h                      ;/* set up character table params */
+    mov bx, cs:[ByteBlock]               ;/**/
+    mov cx, NUM_CHARS                  ;/**/
+    mov dx, START_CHAR                 ;/**/
+
+    mov cs:[Bp2], bp                     ;/* save bp register */
+
+    mov bp, offset cs:Font             ;/* use bp for Font array */
+    int 10h                            ;/* load the table using BIOS */
+
+    mov bp, cs:[Bp2]                     ;/* restore bp */
+
+LF_EXIT:
+    pop es                             ;/* restore the regs used */
+    pop dx                             ;/**/
+    pop cx                             ;/**/
+    pop bx                             ;/**/
+    pop ax                             ;/**/
+    ret                                ;/**/
+
+LoadFont ENDP
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ I S R   V a r i a b l e s ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+BYTES_PER_CHAR         EQU  16d         ;/* bytes in one ascii char */
+NUM_CHARS              EQU  256d        ;/* number of chars to load */
+SCANLINES              EQU  16d         ;/* scanlines in one char */
+FIRST_CHAR_IN_TABLE    EQU  0           ;/* first char in Font array */
+BLOCK_TO_LOAD          EQU  0           ;/* video table to make active */
+START_CHAR             EQU  0           ;/* starting character */
+FONT_BUF_SIZE          EQU  1002h       ;/* size of font table */
+SHIFT                  EQU  8           ;/* shift amount for check of vmode */
+TRUE                   EQU  1           ;/* bool */
+FALSE                  EQU  0           ;/* bool */
+MODE_1                 EQU  0           ;/* BIOS vga text mode 0 40x25 */
+MODE_2                 EQU  1           ;/* BIOS vga text mode 1 40x25 */
+MODE_3                 EQU  2           ;/* BIOS vga text mode 2 80x25 */
+MODE_4                 EQU  3           ;/* BIOS vga text mode 3 80x25 */
+MODE_5                 EQU  7           ;/* BIOS vga text mode 7 Monochrome */
+
+OldInt      DW      0000, 0000         ;/* storage for addr of old isr */
+Rah         DB      0
+Ral         DB      0
+Rbh         DB      0
+Rbl         DB      0
+Rch         DB      0
+Rcl         DB      0
+Rdh         DB      0
+Rdl         DB      0
+MemIndex    DW      0
+LastIndex   DW      0
+CurVmode    DB      0
+ByteBlock   DW      0
+Bp1         DW      0
+Bp2         DW      0
+DataGroup   DW      0
+Psp         DW      0
+Env         DW      0
+InProc      DW      0
+MonoTrap    DW      FALSE
+FontTrap    DW      FALSE
+FontDecoder DW      0
+Font        DB      FONT_FILE_SIZE dup (0);
+
+
+IsrHandler ENDP
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ E n d  O f  I S R ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ Installer   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;/* install tsr in memory */
+Installer PROC near
+    pop ax 							   ;/* Throw away the return address */
+
+    push cs                            ;/* setup for command params */
+    pop  ds                            ;/* tiny, .com, cs == ds */
+
+    mov ax, MaxParams                  ;/* looking for 3 parameters */
+    mov di, offset PtrSwitch           ;/* address PtrSwitch array   */
+    call CommandParams                 ;/* get um */
+    call CheckAx                       ;/* check for error */
+
+    call SetSwitches                   ;/* set the mono and font traps */
+
+    mov dx, FONT_FILE                  ;/* use pointer in psp as filenam */
+    call Fopen                         ;/* attempt to open the command line file */
+    mov Handle, ax                     ;/* save handle */
+    mov ax, bx                         ;/* fopen returns error in bx */
+    call CheckAx                       ;/* check for error */
+
+    mov ax, Handle                     ;/* file handle in ax */
+    mov cx, FONT_BUF_SIZE              ;/* sizeof array to read in */
+    mov dx, offset FontDecoder         ;/* offset of buffer */
+    call Fread                         ;/* read it */
+    call CheckAx                       ;/* error in ax if any */
+
+    mov ax, Handle                     ;/* close file */
+    call Fclose
+
+    mov ah, 35h                        ;/* get vector for interrupt */
+    mov al, INTNUM                     ;/**/
+    int 21h                            ;/**/
+
+    cli
+    mov OldInt, bx                     ;/* save old handler offset */
+    mov OldInt[2], es                  ;/* ... and segment address */
+    sti
+
+    call DeCodeFont
+
+    mov ax, 03
+    call LoadFont
+
+    cmp ResFlag, FALSE                 ;/* -r switch means go resident */
+    je INST_EXIT
+
+    mov ax, INSTALLED
+    call Message
+
+    mov ah, 25h                        ;/* install this handler in IVT */
+    mov al, INTNUM
+    mov dx, offset IsrHandler          ;/**/
+    int 21h                            ;/**/
+
+    mov es, cs:[ENV_SEG]		       ;/* Get environment block segment */
+    mov ah, 49h              		   ;/* Free block (don't need it) */
+    int 21h
+
+    mov dx, offset Installer           ;/* End of resident area */
+    mov cl, 4                		   ;/* Divide by 16 ? */
+    shr	dx, cl               		   ;/* No in paragraphs */
+    inc dx                  		   ;/* Add 1 for good measure */
+    mov al, 0                		   ;/* Return code is OK */
+    mov ah, 31h			               ;/* TSR function */
+    int 21h
+
+
+;//    mov dx, offset Installer           ;/* go resident */
+;//    int 27h                            ;/* ... dont crash <:) */
+
+INST_EXIT:
+    call PrintVersion
+
+    mov TextColor, C_NO_R_SWITCH
+    mov dx, offset NotInstalled
+    call print
+    call LineFeed
+
+    mov ax, 4c00h
+    int 21h
+
+    ret                                ;/* ret for good form */
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ DeCodeFont   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+DeCodeFont PROC near
+    push ax
+    push cx
+    push dx
+    push si
+
+    lea si, ds:Font
+    xor cx, cx
+    cld
+    mov dx, FontDecoder
+
+
+D1:
+    cmp cx, 1000h
+    je D2
+
+    add dx, cx
+    xor [si], dh
+    xor [si], dl
+    inc cx
+    inc si
+    jmp D1
+
+D2:
+    pop si
+    pop dx
+    pop cx
+    pop ax
+
+    ret
+
+DeCodeFont ENDP
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ Installer DS ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Signature        DB     'DOSFONT', 0   ;/* signature bytes in memory */
+SigLen           DW     7              ;/* len of signature */
+
+IsrInstalled     DW     FALSE          ;/* flag to set if resident */
+Handle           DW     0              ;/* handle for font file */
+ISROffset        DW     0              ;/* storage for ISR address */
+ISRSegment       DW     0              ;/*  if resident */
+OldIntSeg        DW     0              ;/* old int segment peeked from mem */
+OldIntOff        DW     0              ;/* old int offset peeked from mem */
+PtrSwitch        DW     0, 0, 0, 0     ;/* pointers to params in psp */
+VGAFlag          DB     FALSE
+ResFlag          DB     FALSE
+MaxParams        DW     4              ;/* used by setswitches */
+TextColor        DB     1fh
+
+comment /*
+;            v1.2 - fixed resident-check bug
+;            v1.3 - added bx+offset to get old interrupt address
+;            v1.5 - added command line switch parse
+;            v1.6 - added user configurable trap action for Mchrome and font
+;                   load calls
+;            v1.7 - added check and report for vga system installed
+;            v1.8 - fixed bug in command line parse
+;            v1.9 - fixed/enabled deinstall feature
+;            v2.0 - Added encryption feature
+;         */
+Version          DB     'ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ·', 0ah, 0dh
+                 DB     '³          ùş DosFont  şù            º', 0ah, 0dh
+                 DB     '³           -=ğ v2.0 ğ=-             º', 0ah, 0dh
+                 DB     '³ Custom Font Driver for VGA systems.º', 0ah, 0dh
+                 DB     'ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼', 0ah, 0dh
+                 DB     0ah, 0dh
+                 DB     0
+NoVGAFound       DB     0ah, 0dh
+                 DB     'Sorry, your video is either unknown or not a VGA system.'
+                 DB     0ah, 0dh
+                 DB     0
+NotInstalled     DB     'Not resident.'
+                 DB     0
+Error            DB     'Unable to load.'
+                 DB     0
+Success          DB     '...Succesfully loaded.'
+                 DB     0
+DeInstalled      DB     'DosFont Removed from memory.'
+                 DB     0
+AlreadyActive    DB     '...Already Active.'
+                 DB     0
+UnableToRemove   DB     'Unable to free memory used by DosFont'
+                 DB     0
+FileNotFound     DB     'Unable to find/open Font File: '
+                 DB     0
+ReadError        DB     'Error reading from Font File.'
+                 DB     0
+NoParams         DB     'usage   : DOSFONT <FontFile> <switches>'
+                 DB     0ah, 0dh
+                 DB     'example : DOSFONT skinny -m'
+                 DB     0ah, 0dh
+                 DB     'switches: -m = Disable Font load in monochrome mode 7.'
+                 DB     0ah, 0dh
+                 DB     '          -f = Disable Font loads from other applications.'
+                 DB     0ah, 0dh
+                 DB     '          -r = Go Resident.'
+                 DB     0
+FontTrapping     DB     'Custom Font will be '
+                 DB     0
+MonoTrapping     DB     'MonoChrome Font loads will be '
+                 DB     0
+Active           DB     'Disabled.'
+                 DB     0
+InActive         DB     'Enabled.'
+                 DB     0
+MessageBug       DB     'Funky error code returned from Load procedure.'
+                 DB     0
+PtrMainVGA       DW     0
+PtrSubVGA        DW     0
+MainVGAText      DB     'Main VGA system is : '
+                 DB     0
+SubVGAText       DB     'Secondary system is: '
+                 DB     0
+DosFontAddr      DB     'Resident at: '
+                 DB     0
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ   CheckVGA  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;/* checks if a vga adapter is installed in system */
+CheckVGA PROC near
+    jmp VGA_START
+
+vga_text  DB   'None            ', 0
+          DB   'MonoChrome      ', 0
+          DB   'CGA color       ', 0
+          DB   'reserved        ', 0
+          DB   'EGA color       ', 0
+          DB   'EGA monochrome  ', 0
+          DB   'PGA color       ', 0
+          DB   'VGA & monochrome', 0
+          DB   'VGA color       ', 0
+          DB   'reserved        ', 0
+          DB   'MCGA digital    ', 0
+          DB   'MCGA monochrome ', 0
+          DB   'MCGA color      ', 0
+          DB   'unknown         ', 0
+
+vga_el_len  DW  17d
+
+VGA_START:
+    push ax                            ;/* save regs */
+    push bx                            ;/**/
+    push cx
+    push si
+
+    mov si, offset vga_text            ;/* index beginning of arrya */
+
+    mov ax, 1a00h                      ;/* bios call get vga info */
+    int 10h
+
+    xor ah, ah                         ;/* clear ah for mul */
+    cmp al, 0                          ;/* this bios function not available */
+    je VGA_UNKNOWN
+
+    mov cx, vga_el_len                 ;/* length of element in array */
+    mov al, bl                         ;/* mul by retval from bl */
+    mul cx
+    add si, ax
+
+    mov PtrMainVGA, si                 ;/* get active display */
+
+    mov si, offset vga_text            ;/* get si back */
+
+    xor ah, ah                         ;/* clear ah justincase */
+
+    mov al, bh
+    mov cx, vga_el_len                 ;/* element length */
+    mul cx
+    add si, ax
+
+    mov PtrSubVGA, si                  ;/* get alternate video */
+
+    mov VGAFlag, TRUE
+
+    jmp VGA_END
+
+
+VGA_UNKNOWN:
+    mov ax, 13d
+    mov cx, vga_el_len
+    mul cx
+
+    add si, ax
+
+    mov PtrSubVGA, si
+    mov PtrMainVGA, si
+
+    mov VGAFlag, FALSE
+
+
+VGA_END:
+    pop si
+    pop cx
+    pop bx
+    pop ax
+
+    ret
+
+CheckVGA ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ   CheckAx   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;/* if ax is 0, all is well, else abort */
+CheckAx PROC near
+
+    cmp ax, 0
+    je short AX_OK
+
+    call Message
+
+    mov ax, 4c00h
+    int 21h
+
+AX_OK:
+    ret
+
+CheckAx ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ    Tone     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Tone PROC
+    push ax
+    push cx
+    push dx
+
+    mov cx, ax     ;/* tone setting from ax is passed */
+
+    in al, 61h     ;/* get speaker setting */
+    mov ah, al
+    or al, 03h
+    push ax        ;/* save it */
+
+    mov al, 0b6h   ;/* enable timer for frequency */
+    out 43h, al
+
+    mov ax, cx
+    out 42h, al    ;/* write it once.... */
+    out 42h, al    ;/* writing twice makes it a word */
+
+    pop ax         ;/* get back original settings */
+    out 61h, al    ;/* turn it on */
+
+    mov dx, 2d    ;/* delay - longer/shorter tone */
+
+l1:
+
+
+l2:
+    loop l2
+    dec dx
+    jnz l1
+
+    mov al, ah
+    out 61h, al
+
+    pop dx
+    pop cx
+    pop ax
+
+    ret
+
+Tone ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ CheckIfInstalled ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;/* CheckIfInstalled is called when loading DOSFONT if DOSFONT is resident */
+CheckIfInstalled PROC near
+    push ax                            ;/* save regs used */
+    push bx                            ;/**/
+    push cx                            ;/**/
+    push si                            ;/**/
+    push es                            ;/**/
+
+    push cs                            ;/* com file */
+    pop ds
+
+    mov ah, 35h                        ;/* get current int vector for */
+    mov al, INTNUM                     ;/* INTNUM */
+    int 21h
+
+    mov ISROffset, bx                  ;/* save ISR address for deinstall */
+    mov ISRSegment, es                 ;/**/
+
+    mov si, offset Signature           ;/* search for Signature */
+    xor cx, cx                         ;/* count number of hits */
+    cld                                ;/* go forward */
+
+    add word ptr bx, 2                 ;/* add jump instruction to bx */
+
+    ;/* next bytes pointed to by es:bx should be the sigbytes */
+    ;/* if not, program is not resident */
+
+DL1:                                   ;/* search for IsrHandler signature */
+    mov al, byte ptr es:[bx]           ;/* put byte at es:bx into al */
+    mov ah, byte ptr cs:[si]
+    cmp al, ah
+    je INC_CX                          ;/* if found, get next byte of Sig.. */
+
+    jmp DL3                            ;/* first byte shoulda hit */
+
+
+INC_CX:                                ;/* add 1 to cx, next byte in si */
+    inc si                             ;/**/
+    inc cx                             ;/**/
+    inc bx                             ;/**/
+
+    cmp cx, SigLen                     ;/* check cx for len of Signature */
+    je DL2                             ;/* get out if hit 'len' times */
+    jmp DL1                            ;/* check next byte */
+
+DL2:
+    cmp cx, SigLen                     ;/* is cx == SigLen ? */
+    je ISR_RESIDENT                    ;/* set IsrInstalled to TRUE */
+    jmp DL3
+
+ISR_RESIDENT:
+    mov bx, offset OldInt
+
+    mov ax, word ptr es:[bx]
+    mov OldIntOff, ax
+
+    inc bx                             ;/* add a word */
+    inc bx
+
+    mov ax, word ptr es:[bx]           ;/* ... and segment */
+    mov OldIntSeg, ax
+
+    mov cx, TRUE
+    mov IsrInstalled, cx
+
+DL3:
+    pop es
+    pop si
+    pop cx
+    pop bx
+    pop ax
+
+	ret
+CheckIfInstalled ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ  DeInstall  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+DeInstall PROC near
+    push ax                            ;/* save regs used */
+    push bx                            ;/**/
+    push cx                            ;/**/
+    push dx                            ;/**/
+    push ds
+    push es                            ;/**/
+
+    push cs                            ;/* comfile */
+    pop ds
+
+    mov ah, 49h                        ;/* free memory thru DOS */
+    mov es, ISRSegment                 ;/* use segment from install check */
+    int 21h                            ;/* try it */
+
+    jc DEINSTALL_ERROR                 ;/* check for error */
+    jmp DEINSTALL_SUCCESS              ;/**/
+
+DEINSTALL_ERROR:
+    call LineFeed
+
+    mov ax, CANT_FREE_MEM
+    call Message
+
+    jmp DEINSTALL_EXIT                 ;/* terminate program */
+
+DEINSTALL_SUCCESS:
+    push ds                            ;/* save ds reg */
+
+    push OldIntSeg                     ;/* pop OldInt segment.. */
+    pop ds                             ;/*  ..into ds */
+
+    mov dx, cs:OldIntOff               ;/* OldInt offset into dx */
+    mov ah, 25h                        ;/**/
+    mov al, INTNUM                     ;/**/
+    int 21h                            ;/* reset IVT with dos */
+
+    pop ds                             ;/* get back dgroup of this prog */
+
+    mov ah, 0                          ;/* reset vmode to load ROM font */
+    mov al, 3                          ;/**/
+    int 10h                            ;/**/
+
+    call LineFeed
+
+    mov ax, DEINSTALLED
+    call Message
+
+
+DEINSTALL_EXIT:
+    pop es                             ;/* restore es reg */
+    pop ds
+    pop dx                             ;/* restore regs b4 exiting to dos */
+    pop cx                             ;/**/
+    pop bx                             ;/**/
+    pop ax                             ;/**/
+
+    ret
+DeInstall ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ CheckSwitch ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;/* checks switches */
+;/* any switch match means to disable that feature */
+;/* if switch compares out to Sw_ , flag is set to false */
+SetSwitches PROC
+    push ax
+    push cx                            ;/* save cx reg */
+    push si
+
+    jmp short CS_START                       ;/* jump over data */
+
+    Sw1  DB     '-m'                   ;/* disable monochrome load */
+    Sw2  DB     '-f'                   ;/* disable int 10 font loads */
+    Sw3  DB     '-r'                   ;/* going resident if -r */
+
+CS_START:
+    mov si, offset Sw1
+    call check_switch
+
+    cmp ax, FALSE
+    je CS_1
+
+    mov MonoTrap, TRUE
+
+CS_1:
+    mov si, offset Sw2
+    call check_switch
+
+    cmp ax, FALSE
+    je CS_2
+
+    mov FontTrap, TRUE
+
+CS_2:
+    mov si, offset Sw3
+    call check_switch
+
+    cmp ax, FALSE
+    je CS_3
+
+    mov ResFlag, TRUE
+
+
+CS_3:
+
+CS_EXIT:
+    pop si
+    pop cx
+    pop ax
+
+    ret
+
+SetSwitches ENDP
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ check_switchÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+check_switch PROC near
+    push cx
+    push dx
+    push di
+
+    mov dx, MaxParams
+    dec dx
+
+    cld
+    mov di, SWITCH_1
+
+cs_START:
+    cmp dx, 0                          ;/* checked all params yet ? */
+    je cs_EXIT                         ;/* get out if true */
+
+    mov ax, [di]
+    cmp ax, [si]
+
+    je cs_FOUND
+
+    dec dx
+    add di, 3                          ;/* next param to check */
+
+    jmp cs_START                        ;/* Sw1 = si if cx == 0 */
+
+
+cs_FOUND:
+    mov ax, TRUE
+    jmp cs_QUIT
+
+cs_EXIT:
+    mov ax, FALSE
+
+cs_QUIT:
+
+    pop di
+    pop dx
+    pop cx
+
+    ret
+
+check_switch ENDP
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ   Message   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;/* prints a message to screen */
+Message PROC near
+    push ax                            ;/* save regs used */
+    push dx
+
+    push cs                            ;/* comfile */
+    pop ds
+
+    push ax                            ;/* save ax error code */
+
+    call PrintVersion
+
+    pop ax                             ;/* get back error */
+
+
+    cmp ax, PARAM_ERROR                ;/* no params ? */
+        je M_PARAM_ERROR
+
+    cmp ax, INSTALLED                  ;/* installed ok ? */
+        je M_INSTALLED
+
+    cmp ax, FILE_OPEN_ERROR            ;/* error opening file ? */
+        je M_FILE_NOT_FOUND
+
+    cmp ax, FILE_READ_ERROR            ;/* error reading file ? */
+        je M_READ_ERROR
+
+    cmp ax, FILE_CLOSE_ERROR           ;/* error closing file ? */
+        je M_CLOSE_ERROR
+
+    cmp ax, RESIDENT                   ;/* already resident ? */
+        je M_RESIDENT
+
+    cmp ax, DEINSTALLED                ;/* already resident ? */
+        je M_DEINSTALLED
+
+    cmp ax, CANT_FREE_MEM              ;/* error removing from memory */
+        je M_CANT_FREE
+
+M_CATCH_ALL:
+    mov TextColor, C_CATCH_ALL
+    call m_catch_all
+         jmp M_EXIT
+
+M_PARAM_ERROR:
+    call m_param_error
+    jmp M_EXIT
+
+M_INSTALLED:
+    call m_installed
+    jmp M_EXIT
+
+M_FILE_NOT_FOUND:
+    call m_file_not_found
+    jmp M_EXIT
+
+M_READ_ERROR:
+    mov TextColor, C_ERROR
+    mov dx, offset ReadError
+    call LineFeed
+    call print
+        jmp M_EXIT
+
+M_CLOSE_ERROR:
+    mov TextColor, C_ERROR
+    mov dx, offset ReadError
+    call LineFeed
+    call print
+        jmp M_EXIT
+
+M_RESIDENT:
+    mov TextColor, C_RESIDENT
+    call ResidentTone
+    mov dx, offset AlreadyActive
+    call LineFeed
+    call print
+        jmp M_EXIT
+
+M_DEINSTALLED:
+    mov TextColor, C_DEINSTALLED
+    call m_deinstalled
+         jmp M_EXIT
+
+M_CANT_FREE:
+    mov TextColor, C_ERROR
+    call ResidentTone
+    mov dx, offset UnableToRemove
+    call LineFeed
+    call print
+         jmp M_EXIT
+
+M_EXIT:
+    call LineFeed
+    call LineFeed
+
+    pop dx
+    pop ax
+
+    ret
+
+Message ENDP
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ m_param_error ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+m_param_error PROC near
+
+    mov dx, offset MainVGAText
+    mov TextColor, C_MAIN_VGA_TEXT
+    call print
+
+    mov dx, PtrMainVGA
+    mov TextColor, C_MAIN_VGA
+    call print
+
+    mov dx, offset SubVGAText
+    mov TextColor, C_SUB_VGA_TEXT
+    call LineFeed
+    call print
+
+    mov dx, PtrSubVGA
+    mov TextColor, C_SUB_VGA
+    call print
+    call LineFeed
+
+    mov TextColor, C_NO_PARAMS
+    mov dx, offset NoParams
+    call LineFeed
+    call print
+
+    ret
+
+m_param_error ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ m_installed   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+m_installed PROC near
+
+    cmp ResFlag, TRUE
+    jne M_INSTALLED_2
+
+    mov TextColor, C_INSTALL_SUCCESS
+    mov dx, offset Success
+    call LineFeed
+    call print
+
+    call print_trap_stat
+
+M_INSTALLED_2:
+    call SuccessTone
+
+    ret
+
+m_installed ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ m_file_not_foundÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+m_file_not_found PROC near
+
+    mov dx, offset MainVGAText
+    mov TextColor, C_MAIN_VGA_TEXT
+    call print
+
+    mov dx, PtrMainVGA
+    mov TextColor, C_MAIN_VGA
+    call print
+
+    mov dx, offset SubVGAText
+    mov TextColor, C_SUB_VGA_TEXT
+    call LineFeed
+    call print
+
+    mov dx, PtrSubVGA
+    mov TextColor, C_SUB_VGA
+    call print
+    call LineFeed
+
+    mov TextColor, C_NO_PARAMS
+    mov dx, offset NoParams
+    call LineFeed
+    call print
+
+    mov TextColor, C_ERROR
+    mov dx, offset FileNotFound
+    call LineFeed
+    call LineFeed
+    call print
+
+    mov TextColor, C_FILE_NAME
+    mov dx, FONT_FILE
+    cmp word ptr dx, 0
+
+    je FNF_EXIT
+
+    mov dx, FONT_FILE
+    call print
+
+FNF_EXIT:
+    ret
+
+m_file_not_found ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ m_deinstalled ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+m_deinstalled PROC near
+    push ax
+    push dx
+
+    call ResidentTone
+    mov dx, offset DeInstalled
+    call LineFeed
+    call print
+
+    pop dx
+    pop ax
+
+    ret
+
+m_deinstalled ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ m_catch_all  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+m_catch_all PROC near
+    push ax
+    push dx
+
+    mov dx, offset MessageBug          ;/* oops */
+    call LineFeed
+    call print
+
+    call LineFeed                      ;/* print strange error code */
+    mov dl, al
+    add al, '0'
+    mov ah, 2
+    int 21h
+
+    pop dx
+    pop ax
+
+    ret
+m_catch_all ENDP
+
+
+
+PrintVersion PROC near
+
+    mov TextColor, C_VERSION
+    call LineFeed                      ;/* print version */
+    mov dx, offset Version
+    call print
+
+    ret
+
+PrintVersion ENDP
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ ResidentTone ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ResidentTone PROC near
+    push ax
+
+    mov ax, 03h
+    call Tone
+    mov ax, 04h
+    call Tone
+    mov ax, 01h
+    call Tone
+    mov ax, 03h
+    call Tone
+    mov ax, 04h
+    call Tone
+    mov ax, 01h
+    call Tone
+
+    pop ax
+
+    ret
+
+ResidentTone ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ SuccessTone  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+SuccessTone PROC near
+    push ax
+
+    mov ax, 01h
+    call Tone
+    mov ax, 02h
+    call Tone
+    mov ax, 03h
+    call Tone
+
+    pop ax
+
+    ret
+
+SuccessTone ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ print ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+print PROC near
+    push si
+    push ax
+    push bx
+    push cx
+    push dx
+
+
+    mov si, dx
+
+    mov ah, 0fh                        ;/* get active display page */
+    int 10h                            ;/* in bh */
+
+    mov ah, 3                          ;/* get current cursor pos */
+    int 10h
+
+P_PRINT:
+    cmp byte ptr [si], 0
+        je P_EXIT
+
+    cmp word ptr [si], 0D0Ah
+        je P_LINEFEED
+
+    mov ah, 9                          ;/* print char with bios */
+    mov al, byte ptr [si]
+    mov bl, TextColor                  ;/* in current global tetcolor */
+    mov cx, 1
+    int 10h
+
+    inc si
+    inc dl
+
+    mov ah, 2
+    int 10h
+
+    jmp P_PRINT
+
+P_LINEFEED:
+    call LineFeed
+    inc si
+    inc si
+    mov ah, 3
+    int 10h
+    jmp P_PRINT
+
+P_EXIT:
+
+    pop dx
+    pop cx
+    pop bx
+    pop ax
+    pop si
+
+    ret
+
+print ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ  LineFeed   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+LineFeed PROC near
+    push ax
+    push dx
+
+    mov ah, 2                          ;/* print linefeed */
+    mov dl, 0ah                        ;/**/
+    int 21h                            ;/**/
+
+    mov dl, 0dh                        ;/**/
+    int 21h                            ;/**/
+
+    pop dx
+    pop ax
+
+    ret
+
+LineFeed ENDP
+
+
+
+;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ print_trap_stat ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+print_trap_stat PROC near
+   push dx                             ;/* save dx reg */
+
+   call LineFeed                       ;/* print a line */
+   call LineFeed
+
+   mov TextColor, C_TRAP_STAT
+   mov dx, offset MonoTrapping         ;/* print mono trap message */
+   call print
+
+   cmp MonoTrap, TRUE                  ;/* is monotrap enabled ? */
+   je PTS_MTRAP_ON                     ;/* print 'active' if it is */
+
+   mov dx, offset InActive             ;/* print 'inactive' */
+   call print
+   jmp PTS1
+
+PTS_MTRAP_ON:
+   mov dx, offset Active               ;/* mono trapping is on */
+   call print
+
+PTS1:
+   call LineFeed
+   mov dx, offset FontTrapping         ;/* print fonttraping */
+   call print
+
+   cmp FontTrap, TRUE                  ;/* is fonttrapping active ? */
+   je PTS_FONTTRAP_ON                  ;/* print 'active' */
+
+   mov dx, offset InActive             ;/* else, print inactive */
+   call print
+   jmp PTS2                            ;/* exit */
+
+PTS_FONTTRAP_ON:
+   mov dx, offset Active
+   call print
+   jmp PTS2
+
+PTS2:
+   pop dx
+
+   ret
+
+print_trap_stat ENDP
+
+
+
+
+
+Installer ENDP
+END
+;/* EOF */

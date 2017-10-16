@@ -1,0 +1,131 @@
+<html><!-- This document Copyright � 1997 by Dan Rollins --><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Video Font Definition</title></head>
+<body><form><table border="5" bgcolor="#C0C0C0"><tbody><tr><td><input value="Top" onclick="window.location='0002.HTM'" type="button"></td><td><input value="Tech Topics" onclick="window.location='0003.HTM'" type="button"></td><td><input value="- -" onclick="window.location='0090.HTM'" type="button"></td><td><input value="++" onclick="window.location='0092.HTM'" type="button"></td><td><input value="GoBack" onclick="history.back()" type="button"></td><td><input value="TECH Help! Home Page" onclick="window.location='INDEX.HTM'" type="button"></td></tr></tbody></table></form><h2>Video Font Definition</h2><pre> �76543210�             �76543210�             �76543210�
+ �        �=00000000=00 �        �=00000000=00 �        �=00000000=00
+ �        �=00000000=00 �        �=00000000=00 �        �=00000000=00
+ �  ���   �=00111000=38 �������  �=11111100=FC �    ��  �=00001100=0C
+ � �� ��  �=01101100=6C � ��  �� �=01100110=66 �    ��  �=00001100=0C
+ ���   �� �=11000110=C6 � ��  �� �=01100110=66 �        �=00000000=00
+ ���   �� �=11000110=C6 � ��  �� �=01100110=66 �   ���  �=00011100=1C
+ ���   �� �=11000110=C6 � �����  �=01111100=7C �    ��  �=00001100=0C
+ �������� �=11111110=FE � ��  �� �=01100110=66 �    ��  �=00001100=0C
+ ���   �� �=11000110=C6 � ��  �� �=01100110=66 �    ��  �=00001100=0C
+ ���   �� �=11000110=C6 � ��  �� �=01100110=66 �    ��  �=00001100=0C
+ ���   �� �=11000110=C6 � ��  �� �=01100110=66 �    ��  �=00001100=0C
+ ���   �� �=11000110=C6 �������  �=11111100=FC ���  ��  �=11001100=CC
+ �        �=00000000=00 �        �=00000000=00 ���  ��  �=11001100=CC
+ �        �=00000000=00 �        �=00000000=00 � ����   �=01111000=78
+ �        �=00000000=00 �        �=00000000=00 �        �=00000000=00
+ �        �=00000000=00 �        �=00000000=00 �        �=00000000=00
+ ����������           � ����������           � ����������
+ ��������������������ͼ                      �
+ɺ������������������������������������������ͼ
+�� c000:n+(m*0)  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00 ASCII  0=
+�� c000:n+(m*1)  00,00,7E,81,A5,81,81,BD,99,81,81,7E,00,00,00,00 ASCII  1=*
+�� c000:n+(m*2)  00,00,7C,FE,FE,D6,FE,FE,BA,C6,FE,7C,00,00,00,00 ASCII  2=*
+��           .
+��           :
+��&gt;c000:n+(m*65) 00,00,38,6C,C6,C6,C6,FE,C6,C6,C6,C6,00,00,00,00 ASCII 65=A
+��&gt;c000:n+(m*66) 00,00,FC,66,66,66,7C,66,66,66,66,FC,00,00,00,00 ASCII 66=B
+             .
+             :
+ In the 8x16 font above, each character of the ASCII table is represented
+ by 16 bytes.  In each of those 16 bytes, each bit represents one pixel,
+ with the high-order bit representing the leftmost of eight pixels.
+
+ On an EGA or VGA you may obtain the address of any ROM-defined font via
+ <a href="http://webpages.charter.net/danrollins/techhelp/0166.HTM">INT 10H 1130H</a>.  The definition of a particular ASCII character, c, starts
+ c*m bytes from the returned address (where m is the height of the
+ character matrix and thus the bytes-per character--usually 8, 14, or 16).
+
+ On a CGA or MDA, the font data is internal to the (inaccessible) character
+ generator.  However, the data layout used in the <a href="http://webpages.charter.net/danrollins/techhelp/0257.HTM">INT 1fH</a> vector (which
+ defines ASCII characters &gt; 127 for CGA graphics modes) is laid out as an
+ 8x8 font.
+
+ �76543210�              �76543210�
+ �  ����  �=00111100=3C  �        �=00000000=00
+ � ��  �� �=01100110=66  ���   �� �=11000110=C6
+ ���      �=11000000=C0  �        �=00000000=00
+ � ��  �� �=01100110=66  ���   �� �=11000110=C6
+ �  ����  �=00111100=3C  ���   �� �=11000110=C6
+ �   ��   �=00011000=18  ���  ��� �=11001110=CE
+ ���  ��  �=11001100=CC  � ��� �� �=01110110=76
+ � ����   �=01111000=78  �        �=00000000=00
+ ����������           �  ����������          �
+ ��������������������ͼ                      �
+ɺ������������������������������������������ͼ
+��&gt;[0:7c]+(8*0)   3C,66,C0,66,3C,18,CC,78  ASCII 128=�
+��&gt;[0:7c]+(8*1)   00,C6,00,C6,C6,CE,76,00  ASCII 129=�
+             .
+             :
+ On EGAs and VGAs, the <a href="http://webpages.charter.net/danrollins/techhelp/0260.HTM">INT 43H</a> vector points to a table of character
+ definitions for graphics mode.  The BIOS refers to the word at 0040:85 in
+ the <a href="http://webpages.charter.net/danrollins/techhelp/0093.HTM">BIOS Data Area</a> to determine the size of each character definition.
+
+��VGA Implied 9th Bit��
+  When displaying in text mode, the VGA uses an internally-handled 720-
+  pixel-wide screen width (in graphics mode, 640 is the highest supported
+  width).  Thus, VGA characters are really 9 pixels wide.  The 9th pixel is
+  usually displayed as blank (0).
+
+  However, certain <a href="http://webpages.charter.net/danrollins/techhelp/0049.HTM">Box &amp; Special Characters</a> would look bad if the rightmost
+  dot were blank.  So characters c0H through dfH are given special treatment
+  by the VGA character generator.  On these characters, the 8th bit is
+  extended into the 9th position.  Examine the <a href="http://webpages.charter.net/danrollins/techhelp/0047.HTM">Character Set Matrix</a> to
+  verify that all of these characters are box-and-line characters which must
+  connect on the right side.  Although you can turn this off this "9th-bit
+  extension" feature (via ATC register 10H, bit 2; see <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">EGA I/O Ports</a>), there
+  is no way to select a different range.
+
+��Dynamic Character Redefinition��
+  You may be aware of a wave of semi-graphical text-mode applications (such
+  as Norton Utilities and Central Point tools).  These programs redefine
+  certain characters to look like checkboxes, round "radio buttons" and so
+  forth.  The most interesting idea is the "semi-graphical" mouse pointer.
+
+  This appears miraculous at first, but is technically not too difficult.
+  You can use <a href="http://webpages.charter.net/danrollins/techhelp/0152.HTM">INT 10H 1100H</a> to modify the "bank 0" character definitions to
+  instantly change the definition of a character.  The trick in tracking a
+  "graphical mouse cursor" is to replace a 2x2 character matrix at the mouse
+  position with some little-used characters (say, d0H-d3H).  Then redefine
+  those characters so that they look a lot like the characters they replace,
+  except that a mouse pointer overlays them.
+
+  Actually, the BIOS font-redefinition interface may be a bit too slow on
+  some VGAs, so programmers use direct port I/O to make the character-
+  generator RAM accessible and programmable on-the-fly.
+
+  When choosing which characters to redefine, you must keep in mind the
+  "9th-bit extension" described above; if you just pick some arbitrary
+  characters, your mouse pointer will appear to have "seams" when displayed
+  on VGA screens.  Only characters c0H-dfH will fill the gaps.
+
+  Programming for Direct Access to Character Generator RAM
+  The following sequence sets up the EGA and VGA for accessing character-
+  generator memory.  See <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">EGA I/O Ports</a> for related information.
+
+    out 3c4H, 0402H   Mask reg; enable write to map 2
+    out 3c4H, 0704H   Memory Mode reg ; alpha, ext mem, non-interleaved
+    out 3ceH, 0005H   Graphics Mode reg; non-interleaved access
+    out 3ceH, 0406H   Graphics Misc reg; map char gen RAM to a000:0
+    out 3ceH, 0204H   Graphics ReadMapSelect reg; enable read chargen RAM
+
+  After these OUTs, the font data begins at a000:0 and the first byte of
+  font data for a character begins at the character's ASCII value * 32.
+  After reading or writing the font data, the following sequence restores
+  the EGA/VGA to normal operations:
+
+    out 3c4H, 0302H   Mask reg; disable write to map 2
+    out 3c4H, 0304H   Memory Mode reg; alpha, ext mem, interleaved
+    out 3ceH, 1005H   Graphics Mode reg; interleaved access
+    out 3ceH, 0e06H   Graphics Misc reg; regen buffer to b800:0
+    out 3ceH, 0004H   Graphics ReadMapSelect reg; disable read chargen RAM
+
+See Also: <a href="http://webpages.charter.net/danrollins/techhelp/0067.HTM">EGA</a>  <a href="http://webpages.charter.net/danrollins/techhelp/0070.HTM">VGA</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">EGA I/O Ports</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/NOTHERE.HTM">VGA I/O Ports</a>
+          <a href="http://webpages.charter.net/danrollins/techhelp/0114.HTM">Video Modes</a>
+                                    -*-
+</pre>
+</body></html>

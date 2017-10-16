@@ -1,0 +1,305 @@
+
+
+                               NewBasic C Compiler
+                                (32 bit version)
+                                Version 00.20.27
+                                    Freeware
+
+                             Forever Young Software
+                             (C)opyright  1984-2016
+                              All rights reserved
+                                  19 Aug 2016
+
+** Please always read WHATSNEW.TXT on each update for possible changes **
+
+Table of Contents
+
+Introduction and Overview
+  Legal Terms and Conditions ..........................2
+  What is NBC indented for ............................2
+  What can NBC do .....................................3
+  What won't NBC do ...................................3
+  System Requirements .................................5
+  Software Requirements ...............................5
+  Latest Version ......................................6
+  Bug report ..........................................6
+  Mailing List ........................................6
+  About the Author ....................................6
+
+Using NBC
+  Running NBC .........................................9
+  Compile time/Command line ...........................9
+
+Your Source File(s)
+  Syntax ..............................................X
+
+-=-=-=- NewBasic C Compiler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page 02
+
+Introduction and Overview
+
+Legal Terms and Conditions
+
+This package is provided to you under the following conditions:
+
+ 1. This package is distributed as freeware.  You may copy the NBASM.ZIP files, 
+    and give them to anyone who accepts these terms, as long as the copies you 
+    distribute are complete and unmodified.
+
+ 2. There is no registration fee for using this package.  However, a note or
+    comment saying that you have downloaded this package and are using,
+    deleting, liking, loving, hating, etc., would be appreciated.  You can
+    send all comments to:
+
+         fys@fysnet.net
+
+    Commercial, government, and educational institutions and training
+    facilities must be registered in order to use NBASM.  Please contact me
+    for special terms and conditions.
+
+ 3. This package may not be sold to anyone.  If this package is distributed on
+    a disk, any fees collected must be for media and handling and may not 
+    exceed ten US dollars.
+
+ 4. I am not to be held liable for any damages, of any kind, arising from any
+    failure of any programs in this package or any programs created with this
+    package.  Use at your own risk.
+
+ 5. You can sell or distribute any program that you have written or modified
+    using this compiler. There is no fee for any executable file produced
+    with this package as long as this executable file is for non-commercial
+    use. If you use this package for commercial use, please contact me for
+    special terms and conditions.
+
+ 6. Sorry for all the legalities.  This is to protect me as well as protect 
+    you.
+
+
+What is NBC indented for?
+
+ 1. NBC is intended for users that want to learn OS development.  NBC is designed
+    to create assembly source files ready for assembly with NBASM, also included
+    in this package.
+
+ 2. NBC is based on and contains a lot of code from Alex's SmallerC compiler found
+    at https://github.com/alexfru/SmallerC.  Thank you Alex.
+
+ 3. I created NBC mostly for the enjoyment and to make my OS development files
+    easier to manage.  You may use NBC to its full capabilities, but please take 
+    note that it does contain bugs and/or errors.  If you find a bug and/or 
+    error, please let me know. I am constantly adding new things to NBC and 
+    fixing bugs and errors is part of the fun.
+
+
+-=-=-=- NewBasic C Compiler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page 04
+
+What can NBC do?
+
+ 1. NBC takes a text file, consisting of ANSI C Source and produces a file 
+    ready for assembling with NBASM.
+
+ 2. Your source files, main file and all include files, are not restricted and
+    can be of any size.
+
+ 3. NBC supports long filenames, and uses long filenames by default if the 
+    current operating system has LFN support.
+
+ 4. Please note that NBC was created for and intended for my OS development.
+    It does not create DOS executable files.
+
+What won't NBC do?
+
+ 1. NBC does not create executable files.  It only intention is to create
+    assembly source files ready for assembly with NBASM.
+
+ 2. It is up to the user to modify the generated .ASM files to be assembled
+    to DOS executables.
+
+ 3. NBC does have a lot of restrictions and does not contain all ANSI C supported
+    functions and syntax.
+
+-=-=-=- NewBasic C Compiler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page 05
+
+System Requirements
+ 1. Intel compatible 386+ machine with a "proper" DPMI server.
+    The following items are valid DPMI servers:
+      MS Windows Dos box, QDPMI, 386Max, NWDOS, OpenDOS, OS/2,
+      Linux DOSEmu, and DJGPP's CWSDPMI.
+    You can get 'CWSDPMI - DPMI server' from:
+      ftp://ftp.bu.edu/pub/mirrors/simtelnet/gnu/djgpp/v2misc/csdpmi5b.zip
+        or 
+      ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2misc/csdpmi5b.zip
+      (see error codes for more information)
+ 2. a disk drive with a minimum of 256k of free disk space
+    (is that all?) plus room for the .COM and .LST file(s).
+ 3. a minimum of 1 meg free extended memory.
+ 4. a keyboard   ( Duuhh! =:o) )
+ 5. a printer capable of text printing (for hard-copies right?)
+
+
+Software Requirements
+ 1. A DOS Protected Mode Interface (DPMI) server:
+      Windows DOS box, QDPMI, 386Max, NWDOS, OpenDOS, OS/2, Linux DOSEmu,
+       or DJGPP's CWSDPMI.
+ 2. Some sort of viewer to view this document.  (But you are reading this
+    right now, so you got at least that much, right?)
+ 3. A similar editor to create DOS ascii text files.  (EDIT.COM|EXE)
+ 4. PKUNZIP/WINZIP to unzip the zip file.  Again, you are reading this file,
+    so you must have one of these :0)
+
+
+
+-=-=-=- NewBasic C Compiler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page 07
+
+Latest Version
+  You can get the latest version of NBASM and utilities at:
+
+      http://www.fysnet.net/newbasic.htm
+
+
+
+Bug Report
+  NBC is not perfect and there are bound to be bugs in it.
+   Please report bugs to:
+
+    fys@fysnet.net
+    http://www.fysnet.net/newbasic.htm
+
+Mailing List
+  I have an announcement mailing-list which I use to announce news and updates 
+  about NBASM and other items pertaining to NBASM.  It is a moderated list and 
+  will only be used for NBASM announcements.
+
+  If you would like to receive mail each time I make an update or announce 
+  something about NBASM, please send an empty email message to:
+
+    nbasm-subscribe@yahoogroups.com
+
+  To unsubscribe from the list, please send an empty email message to:
+
+    nbasm-unsubscribe@yahoogroups.com
+
+  You can also view the archived messages at:
+
+    http://groups.yahoo.com/group/nbasm
+
+  If you have any problems with the above mailing list, please let me know at:
+
+    fys@fysnet.net  (Please include your Yahoogroups login in name)
+
+  
+  I don't plan on more than about a single message per week at the most.  So 
+    don't worry about me filling your "inbox"  :-)
+
+
+
+-=-=-=- NewBasic C Compiler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page 08
+
+About the Author
+
+  I am a full time Freelance DOS and Windows 9x/NT programmer.  I have been 
+  programming since 1984 and most of these projects for the Intel x86 systems.
+  I have been making a nice living from my work, and with your much 
+  appreciated support, I will continue to improve my products, and enhance
+  them with new features and capabilities.
+
+  I can be reached at the following addresses:
+
+    http://www.fysnet.net/index.htm
+    fys@fysnet.net
+
+    Forever Young Software
+    %Benjamin David Lunt
+    PO Box 875
+    Taylor, AZ  85939-0875
+    USA
+
+
+-=-=-=- NewBasic C Compiler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page 09
+
+Using NBC
+
+Running NBC
+
+  From the DOS prompt, type:  (Items in brackets are optional.)
+
+    NBC source[.c target.asm /parameter list]
+
+    source is the filename of your source file.  If you do not include an 
+      extension, .c is assumed.
+    target, if given, is the name that NBC will name your target file.
+      If not given, NBC will use "source" as the target filename with
+      the .asm extension.
+    parameter list can be any one of the following in any order.
+      Please note that any parameters are first come, first serve and will
+      overwrite any parameters previously listed on the command line.
+              ** All parameters are case sensitive **
+
+      -help     - help screen
+      -I        - include path. specify an include path
+      -ver      - view version info
+      -verbose  - verbose
+
+-=-=-=- NewBasic C Compiler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page X
+
+
+  One of the most important additions to this compiler, the addition that
+   I needed to have for OS development was the FARx keyword.  For example,
+   in Assembly, you need far pointers using segment over-rides.
+
+  In NBC, these segment over-rides are given by the FARx keyword.
+
+  For example, if you would like to use a pointer and that pointer must
+   use the ES: over-ride on all memory accesses, use the following:
+
+  unsigned char FarE *p;
+
+  By doing this, NBC will add the 'ES:' over-ride to all memory accesses
+   that involve the pointer 'p'.
+
+  You may use 'FarC', 'FarE', 'FarF', and 'FarG'.  The DS: over-ride is used
+   by default, so no need for 'FarD'.
+
+  Here is an example:
+
+
+    _asm (
+       "  push es       \n"
+       "  mov  ax,4321h \n"
+       "  mov  es,ax    \n"
+    );
+
+    unsigned char FarE *p = (unsigned char FarE *) 0x00001234;
+
+    *p = 'B';
+   
+    _asm (
+       "  pop  es   \n"
+    );
+
+   Please note that you must assign the over-ride register before hand.
+
+
+
+-=-=-=- NewBasic C Compiler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page X
+
+   C source of the compiler is included so that you may modify as you see
+   fit.  However, if you re-distribute it, please keep in mind the respect
+   of its origin, Alex's SmallerC compiler found at:
+
+        https://github.com/alexfru/SmallerC
+
+
+
+-=-=-=- NewBasic C Compiler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page X
+
+
+  More details to be added when time and interest allows.
+
+
+-=-=-=- NewBasic C Compiler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page X
+
+   INDEX...
+       Coming soon to a theater near you :)
+
+
+

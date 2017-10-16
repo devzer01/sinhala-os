@@ -1,0 +1,78 @@
+[global_config]
+  always_split_with_profile = True
+  broadcast_default = off
+  dbus = True
+  enabled_plugins = InactivityWatch, CustomCommandsMenu, TestPlugin, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, MavenPluginURLHandler, LaunchpadBugURLHandler
+  window_state = maximise
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+  [[bootloader]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = 9e5046d7-7bdc-49b2-9841-aaca56aa990b
+      last_active_window = True
+      maximised = True
+      order = 0
+      parent = ""
+      title = bootloader debugging
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      ratio = 0.5
+      type = HPaned
+    [[[terminal2]]]
+      directory = /home/nayana/
+      order = 0
+      parent = child1
+      profile = qemu
+      type = Terminal
+      uuid = 9e5046d7-7bdc-49b2-9841-aaca56aa990b
+    [[[terminal3]]]
+      directory = /home/nayana/code/sinhala-os
+      order = 1
+      parent = child1
+      profile = gdb
+      type = Terminal
+      uuid = 9782b706-0029-4184-bb2d-4c99b09caaa9
+[plugins]
+  [[CustomCommandsMenu]]
+    [[[qemu-monitor]]]
+      command = telnet localhost 4444
+      enabled = True
+      name = qemu-monitor
+      position = 0
+[profiles]
+  [[default]]
+    background_image = None
+    update_records = False
+  [[gdb]]
+    background_image = None
+    copy_on_selection = True
+    custom_command = gdb
+    font = Sans 20
+    foreground_color = "#3f5df0"
+    exit_action = close
+    login_shell = True
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    use_custom_command = True
+    use_system_font = False
+  [[qemu]]
+    background_image = None
+    copy_on_selection = True
+    custom_command = telnet localhost 4444
+    font = Sans 20
+    foreground_color = "#DC143C"
+    exit_action = close
+    login_shell = True
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    use_custom_command = True
+    use_system_font = False

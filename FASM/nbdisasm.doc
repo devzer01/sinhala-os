@@ -1,0 +1,303 @@
+
+
+                              NewBasic Disassembler
+                                (32 bit version)
+                                Version 00.10.40
+                                    Freeware
+
+                             Forever Young Software
+                             (C)opyright  1984-2016
+                              All rights reserved
+                                  04 Apr 2010
+
+            ****   Version 00.10.00 and up require a 386+   ****
+            ****    and a DPMI server (Windows DOS box)     ****
+            ****  (see requirements below for other DPMIs)  ****
+
+** Please always read WHATSNEW.TXT on each update for possible changes **
+
+Table of Contents
+
+Introduction and Overview
+  Legal Terms and Conditions ..........................2
+  What is NBDISASM indented for .......................2
+  What can NBDISASM do ................................2
+  What won't NBDISASM do ..............................2
+  Difference Between Other DISassemblers ..............4
+  Conflicts with Other Software .......................5
+  System Requirements .................................5
+  Software Requirements ...............................5
+  Latest Version ......................................6
+  Bug report ..........................................6
+  Mailing List ........................................6
+  About the Author ....................................6
+
+Using NBDISASM
+  Running NBDISASM ....................................8
+
+Index ................................................??
+
+
+
+-=-=-=- NewBasic Disassembler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page 02
+
+Introduction and Overview
+
+Legal Terms and Conditions
+
+This package is provided to you under the following conditions:
+
+ 1. This package is distributed as freeware.  You may copy the NBASM.ZIP files, 
+    and give them to anyone who accepts these terms, as long as the copies you 
+    distribute are complete and unmodified.
+
+ 2. There is no registration fee for using this package.  However, a note or
+    comment saying that you have downloaded this package and are using,
+    deleting, liking, loving, hating, etc., would be appreciated.  You can
+    send all comments to:
+
+         fys@fysnet.net
+
+    Commercial, government, and educational institutions and training
+    facilities must be registered in order to use NBDISASM.  Please contact me
+    for special terms and conditions.
+
+ 3. This package may not be sold to anyone.  If this package is distributed on
+    a disk, any fees collected must be for media and handling and may not 
+    exceed ten US dollars.
+
+ 4. I am not to be held liable for any damages, of any kind, arising from any
+    failure of any programs in this package or any programs created with this
+    package.  Use at your own risk.
+
+ 5. You can sell or distribute any program that you have written or modified
+    using this assembler. There is no fee for any executable file produced
+    with this package as long as this executable file is for non-commercial
+    use. If you use this package for commercial use, please contact me for
+    special terms and conditions.
+
+ 6. Sorry for all the legalities.  This is to protect me as well as protect 
+    you.
+
+
+What is NBDISASM indented for?
+
+ 1. NBDISASM is indented for users that want to learn assembly language as
+    well as experienced users who want to create assembly language projects.
+
+ 2. NBDISASM can be used to disassemble small or large projects.  There are
+    no size restrictions, other than available memory.
+
+ 3. I created NBDISASM mostly for the enjoyment and to learn how to create a 
+    disassembler.  You may use NBDISASM to its full capabilities, but please
+    take note that it does contain bugs and/or errors.  If you find a bug
+    and/or error, please let me know. I am constantly adding new things to
+    NBASM and fixing bugs and errors is part of the fun.
+
+-=-=-=- NewBasic Disassembler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page 03
+
+What can NBDISASM do?
+
+ 1. NBDISASM takes a binary file, consisting of Intel compatible instructions,
+    aka machine code language for the 8086/88 through the Pentium processors,
+    and outputs to the standard out, the screen, a list of mnemonics.  In
+    other words, it dis-assembles a given assembled program.
+
+ 2. Your binary files are not restricted and can be of any size, as long as
+    there is enough available memory.
+
+ 3. NBDISASM supports long filenames, and uses long filenames by default if
+    the current operating system has LFN support.
+
+ 4. NBDISASM is 'fairly' fast.  The source to NBDISASM is in C and compiled
+    with the 32-bit DJGPP.  You can get DJGPP from http://www.delorie.com/djgpp.
+
+ 5. NBDISASM is easy to use.
+
+
+What won't NBDISASM do?
+
+ 1. NBDISASM afterall is a disassembler and can be used to reverse engineer
+    other peoples code.  However, please take into account that this may
+    or may not be legal depending on what you use NBDISASM for.  I take
+    no responsibility, legal or other, if you are using NBDISASM illegaly.
+
+
+-=-=-=- NewBasic Disassembler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page 04
+
+Difference Between Other Disassemblers
+
+  NBDISASM is very close to NASM's NDISASM.  There are just a few
+  differences.  With a little work, I am sure I could get it to be
+  just like NDISASM, but why :-)
+
+
+Conflicts with Other Software
+
+ 1. MCAFEE in a Win9x DOS session
+    MCAFEE's VSCAN for Windoze 9x makes NBDISASM pause just after the
+    Copyright information that is printed to the screen.  It is probably
+    scanning the source file for viruses before it reads from to disk.  To
+    stop the 'pause', right click the 'V' (VirusScan) icon in the task bar
+    and click on EXIT.
+    Once you finish your DOS session, you can reload VirusScan.  
+    If you don't get the 'pause', then there is no need to unload VirusScan.
+
+    NBDISASM does not contain any intentional viruses.  However, it is always
+    safe to scan all files you get from the internet or any type of disk.
+
+  
+  No other known conflicts.  Please let me know if you find one.
+
+
+
+System Requirements
+ 1. Intel compatible 386+ machine with a "proper" DPMI server.
+    The following items are valid DPMI servers:
+      MS Windows Dos box, QDPMI, 386Max, NWDOS, OpenDOS, OS/2,
+      Linux DOSEmu, and DJGPP's CWSDPMI.
+    You can get 'CWSDPMI - DPMI server' from:
+      ftp://ftp.bu.edu/pub/mirrors/simtelnet/gnu/djgpp/v2misc/csdpmi5b.zip
+        or 
+      ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2misc/csdpmi5b.zip
+ 2. a disk drive with a minimum of 256k of free disk space
+    (is that all?) plus room for the output files file(s).
+ 3. The memory requirements are the size of the file you disassemble.
+ 4. a keyboard   ( Duuhh! =:o) )
+ 5. a printer capable of text printing (for hard-copies right?)
+
+
+Software Requirements
+ 1. A DOS Protected Mode Interface (DPMI) server:
+      Windows DOS box, QDPMI, 386Max, NWDOS, OpenDOS, OS/2, Linux DOSEmu,
+       or DJGPP's CWSDPMI.
+ 2. Some sort of viewer to view this document.  (But you are reading this
+    right now, so you got at least that much, right?)
+ 4. PKUNZIP/WINZIP to unzip the zip file.  Again, you are reading this file,
+    so you must have one of these :0)
+
+
+-=-=-=- NewBasic Disassembler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page 06
+
+Latest Version
+  You can get the latest version of NBDISASM and utilities at:
+
+      http://www.fysnet.net/newbasic.htm
+
+
+
+Bug Report
+  NBDISASM is not perfect and there are bound to be bugs in it.
+   Please report bugs to:
+
+    fys@fysnet.net
+    http://www.fysnet.net/newbasic.htm
+
+
+Known Bugs/Errors
+  This is the first release, so I am sure there are bugs.
+
+
+Mailing List
+  I have an announcement mailing-list which I use to announce news and updates 
+  about NBASM and other items pertaining to NBASM.  It is a moderated list and 
+  will only be used for NBASM announcements.
+
+  If you would like to receive mail each time I make an update or announce 
+  something about NBASM, please send an empty email message to:
+
+    nbasm-subscribe@yahoogroups.com
+
+  To unsubscribe from the list, please send an empty email message to:
+
+    nbasm-unsubscribe@yahoogroups.com
+
+  You can also view the archived messages at:
+
+    http://groups.yahoo.com/group/nbasm
+
+  If you have any problems with the above mailing list, please let me know at:
+
+    fys@fysnet.net  (Please include your Yahoogroups login in name)
+
+  
+  I don't plan on more than about a single message per week at the most.  So 
+    don't worry about me filling your "inbox"  :-)
+
+
+
+About the Author
+
+  I am a full time Freelance DOS and Windows 9x/NT programmer.  I have been 
+  programming since 1984 and most of these projects for the Intel x86 systems.
+  
+
+-=-=-=- NewBasic Disassembler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page 07
+
+  I have been making a nice living from my work, and with your much 
+  appreciated support, I will continue to improve my products, and enhance
+  them with new features and capabilities.
+
+  I can be reached at the following addresses:
+
+    http://www.fysnet.net/index.htm
+    fys@fysnet.net
+
+    Forever Young Software
+    %Benjamin David Lunt
+    PO Box 875
+    Taylor, AZ  85939-0875
+
+
+
+-=-=-=- NewBasic Disassembler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page 08
+
+
+Using NBDISASM
+
+Running NBDISASM
+
+  From the DOS prompt, type:  (Items in brackets are optional.)
+
+    NBDISASM source.ext [parameter list]
+
+    source.ext is the filename of your source file.  You must include the 
+      extension.
+    parameter list can be any one of the following in any order.
+      Please note that any parameters are first come, first serve and will
+      overwrite any parameters previously listed on the command line.
+      (the '-' char can be substituted for the '/' char)
+              ** All parameters are case sensitive **
+
+      /b    - disassemble 16-bit code
+      /B    - disassemble 32-bit code
+      /o    - origin.  The starting offset of the code.
+              You must give a C style Hex number.
+              examples:
+                /o0x100
+                /o0x12345678
+      /e    - skip.  Skip so many bytes from the front of the file.
+              You must give a C style Hex number.
+              examples:
+                /e0x100
+                /e0x12345678
+      /n    - no hex.  Don't display the hex code.
+      /N    - no offset.  Don't display the offset column.
+      /v    - view version info
+
+  NBDISASM returns an error code in ERRORLEVEL for use in .bat files.  The 
+  following codes are returned:
+
+    00h     - No error encountered
+
+    *** I have not included the detailed error codes yet. ***
+
+
+
+-=-=-=- NewBasic Disassembler -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Page ??
+
+   INDEX...
+       Coming soon to a theater near you :)
+
+
+
