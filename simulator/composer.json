@@ -1,0 +1,9 @@
+{
+    "name": "root/simulator",
+    "require": {
+        "slim/slim": "^3.8"
+    },
+    "require-dev": {
+        "\u001b": "q"
+    }
+}
