@@ -1,59 +1,4 @@
-<!DOCTYPE html>
-<html lang="si">
-<head>
-    <meta charset="latin1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
-    <script src="assets/font.js"></script>
-    <link rel="stylesheet" href="kbd.css" />
-    <style>
-    @font-face {
-        font-family: sk8;
-        src: url('WARNA.ttf');
-    }
-
-    .keyboard {
-        width: 450px;
-        float: left;
-    }
-    .keyboard kbd {
-        font-family: sk8;
-        float: left;
-        width: 30px; height: 30px;
-    }
-
-    .divpixel {
-        width: 24px;
-        height: 24px;
-        background-color: white;
-        float: left;
-        border: gray 1px dotted;
-        color: bisque;
-        font-size: 1px;
-    }
-    .pxdig {
-        height: 24px;
-        border: gray 1px dotted;
-        float: left;
-        padding: 0 0;
-        text-align: center;
-    }
-    .xred {
-        border-bottom: red 1px solid !important;
-    }
-
-    .middlex {
-        border-right: 2px solid black !important;
-    }
-    sup {
-        vertical-align: super;
-        font-size: smaller;
-    }
-    .keycap .border { stroke: black; stroke-width: 2; }
-    .keycap .inner.border { stroke: rgba(0,0,0,.1); }
-</style>
-</head>
-<body style="width: 100%">
+<?php include_once "inc/header.inc.php"; ?>
 <div style="width: 50%; float: left">
     <canvas id="canvas" width="640" height="480"></canvas>
     <br />
@@ -62,7 +7,27 @@
     <input type="radio" class="res" name="res" val="2" data-width="800" data-height="600">800x600
     <input type="radio" class="res" name="res" val="3" data-width="1024" data-height="768">1024x768
 
-    <img src="keyboard-layout.png" />
+        <input type="text" size="2" id="leftx">
+        <button id="xclear">Clear</button>
+        <button id="swap">Swap</button>
+        <button id="xcopy">Copy</button>
+        <input type="text" size="2" id="rightx">
+
+
+
+
+    <div style="width: 100%">
+        <div style="width: 600px; float: left;">
+            <?php for ($i = 128; $i < 256; $i++) {
+                $zx = $i-128;
+                ?>
+                <div style="float: left; width: 12%" data-xpos="<?php echo $zx;?>" class="dxpos">
+                    <canvas style='float: left' id="pcanvas<?php echo $i;?>" width="100" height="100"></canvas>
+                    <div style='float: left' class='dxkx' data-code="<?php echo $i;?>"><?php $x = chr($i); echo $x . "($zx)";?></div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
 </div>
 <div style="width: 50%; float: left">
     <div>
@@ -110,7 +75,7 @@
             </div>
             <div id="currentchar"></div>
             <div class="keyboard">
-                <?php for ($i = 128; $i < 256-49-13; $i++) { ?>
+                <?php for ($i = 128; $i < 256; $i++) { ?>
                     <kbd class='xkx' data-code="<?php echo $i;?>"><?php $x = chr($i); echo $x;?></kbd>
                 <?php } ?>
             </div>
@@ -125,9 +90,4 @@
     </div>
 </div>
 
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        crossorigin="anonymous"></script>
-<script src="fonts.js"></script>
-</body>
-</html>
+<?php include_once "inc/footer.inc.php"; ?>

@@ -53,6 +53,7 @@ var initCanvas = function() {
 };
 
 var drawChars = function () {
+    drawpAll();
     var charwidth = 8;
     var charheight = 16;
     var charbytes = 16;
@@ -94,6 +95,57 @@ var drawChars = function () {
         }
         y = y + 1;
     }
+};
+
+var drawpAll = function() {
+    for (i = 0; i < 128; i++) {
+        var code = i;
+        var bmt = bytex.slice(16 * code, (16 * code) + 16);
+        drawp(bmt, code + 128);
+    }
+};
+
+var drawp = function(bitmask, pid) {
+    var pcanvas = document.getElementById('pcanvas' + pid);
+    var pctx = pcanvas.getContext("2d");
+    pctx.fillStyle = "black";
+    pcanvas.width = 10;
+    pcanvas.height = 20;
+
+    pctx.fillStyle = "black";
+    pctx.fillRect(0, 0, pcanvas.width, pcanvas.height);
+    pctx.strokeStyle = "#FF0000";
+
+    var id = pctx.createImageData(1, 1); // only do this once per page
+    var d = id.data;                        // only do this once per page
+    d[0] = 255;
+    d[1] = 255;
+    d[2] = 255;
+    d[3] = 255;
+
+    var ix = 0;
+    var bxi = 0;
+    var li = 0;
+    var ly = 0;
+    for (ix = 0; ix < bitmask.length; ix++) {
+        var byte = bitmask[ix];
+        ly++;
+        li = 0;
+        var index = 0x80;
+        while (index > 0) {
+            if (index == (byte & index)) {
+                d[0] = 255; d[1] = 255; d[2] = 255;
+                pctx.putImageData(id, li, ly);
+            } else {
+                d[0] = 0; d[1] = 0; d[2] = 0;
+                pctx.putImageData(id, li, ly);
+            }
+            bxi++;
+            index = index >> 1;
+            li++;
+        }
+    }
+
 };
 
 var drawpreview = function(bitmask, isRight) {
@@ -231,6 +283,39 @@ $(document).ready(function () {
             dataType: 'json'
         });
     });
+    $(".dxpos").click(function (e) {
+       var dpos = $(this).data('xpos');
+        $("#leftx").val(dpos);
+    });
+    $("#swap").click(function (e) {
+        var leftx = $("#leftx").val();
+        var rightx = $("#rightx").val();
+        var lbitmask = bytex.slice(16 * leftx, (16 * leftx) + 16);
+        var rbitmask = bytex.slice(16 * rightx, (16 * rightx) + 16);
+        bytex.splice.apply(bytex, [leftx * 16, 16].concat(rbitmask));
+        bytex.splice.apply(bytex, [rightx * 16, 16].concat(lbitmask));
+        initCanvas();
+        drawChars();
+    });
+
+    $("#xcopy").click(function (e) {
+        var leftx = $("#leftx").val();
+        var rightx = $("#rightx").val();
+        var lbitmask = bytex.slice(16 * leftx, (16 * leftx) + 16);
+        //bytex.splice.apply(bytex, [leftx * 16, 16].concat(rbitmask));
+        bytex.splice.apply(bytex, [rightx * 16, 16].concat(lbitmask));
+        initCanvas();
+        drawChars();
+    });
+    $("#xclear").click(function (e) {
+        var leftx = $("#leftx").val();
+        var lbitmask = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        //bytex.splice.apply(bytex, [leftx * 16, 16].concat(rbitmask));
+        bytex.splice.apply(bytex, [leftx * 16, 16].concat(lbitmask));
+        initCanvas();
+        drawChars();
+    });
+
 
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
