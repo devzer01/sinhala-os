@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html>
+<head>    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ </head>
+ <body>
+<table class="wikitable" style="text-align:center; font-size:100%;" width="100%">
+<tbody><tr style="font-size: 75%;">
+<th><a href="/wiki/ISO_15919" title="ISO 15919">ISO</a></th>
+<th>ka</th>
+<th>kha</th>
+<th>ga</th>
+<th>gha</th>
+<th>ṅ</th>
+<th>ca</th>
+<th>cha</th>
+<th>ja</th>
+<th>jha</th>
+<th>ñ</th>
+<th>ṭa</th>
+<th>ṭha</th>
+<th>ḍa</th>
+<th>ḍha</th>
+<th>ṇa</th>
+<th>ta</th>
+<th>tha</th>
+<th>da</th>
+<th>dha</th>
+<th>na</th>
+<th>ṉ</th>
+<th>pa</th>
+<th>pha</th>
+<th>ba</th>
+<th>bha</th>
+<th>ma</th>
+<th>ya</th>
+<th>ra</th>
+<th>ṟ</th>
+<th>la</th>
+<th>ḷa</th>
+<th>ḻ</th>
+<th>v</th>
+<th>śa</th>
+<th>ṣa</th>
+<th>sa</th>
+<th>h</th>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Eastern_Nagari" class="mw-redirect" title="Eastern Nagari">Assamese</a></th>
+<td>ক</td>
+<td>খ</td>
+<td>গ</td>
+<td>ঘ</td>
+<td>ঙ</td>
+<td>চ</td>
+<td>ছ</td>
+<td>জ</td>
+<td>ঝ</td>
+<td>ঞ</td>
+<td>ট</td>
+<td>ঠ</td>
+<td>ড</td>
+<td>ঢ</td>
+<td>ণ</td>
+<td>ত</td>
+<td>থ</td>
+<td>দ</td>
+<td>ধ</td>
+<td>ন</td>
+<td style="background:#ccc;"></td>
+<td>প</td>
+<td>ফ</td>
+<td>ব</td>
+<td>ভ</td>
+<td>ম</td>
+<td>য</td>
+<td>ৰ</td>
+<td style="background:#ccc;"></td>
+<td>ল</td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td>ৱ</td>
+<td>শ</td>
+<td>ষ</td>
+<td>স</td>
+<td>হ</td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Eastern_Nagari" class="mw-redirect" title="Eastern Nagari">Bengali</a></th>
+<td>ক</td>
+<td>খ</td>
+<td>গ</td>
+<td>ঘ</td>
+<td>ঙ</td>
+<td>চ</td>
+<td>ছ</td>
+<td>জ</td>
+<td>ঝ</td>
+<td>ঞ</td>
+<td>ট</td>
+<td>ঠ</td>
+<td>ড</td>
+<td>ঢ</td>
+<td>ণ</td>
+<td>ত</td>
+<td>থ</td>
+<td>দ</td>
+<td>ধ</td>
+<td>ন</td>
+<td style="background:#ccc;"></td>
+<td>প</td>
+<td>ফ</td>
+<td>ব</td>
+<td>ভ</td>
+<td>ম</td>
+<td>য</td>
+<td>র</td>
+<td style="background:#ccc;"></td>
+<td>ল</td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td>শ</td>
+<td>ষ</td>
+<td>স</td>
+<td>হ</td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Devanagari" title="Devanagari">Devanagari</a></th>
+<td>क</td>
+<td>ख</td>
+<td>ग</td>
+<td>घ</td>
+<td>ङ</td>
+<td>च</td>
+<td>छ</td>
+<td>ज</td>
+<td>झ</td>
+<td>ञ</td>
+<td>ट</td>
+<td>ठ</td>
+<td>ड</td>
+<td>ढ</td>
+<td>ण</td>
+<td>त</td>
+<td>थ</td>
+<td>द</td>
+<td>ध</td>
+<td>न</td>
+<td>ऩ</td>
+<td>प</td>
+<td>फ</td>
+<td>ब</td>
+<td>भ</td>
+<td>म</td>
+<td>य</td>
+<td>र</td>
+<td>ऱ</td>
+<td>ल</td>
+<td>ळ</td>
+<td>ऴ</td>
+<td>व</td>
+<td>श</td>
+<td>ष</td>
+<td>स</td>
+<td>ह</td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Gujarati_script" class="mw-redirect" title="Gujarati script">Gujarati</a></th>
+<td>ક</td>
+<td>ખ</td>
+<td>ગ</td>
+<td>ઘ</td>
+<td>ઙ</td>
+<td>ચ</td>
+<td>છ</td>
+<td>જ</td>
+<td>ઝ</td>
+<td>ઞ</td>
+<td>ટ</td>
+<td>ઠ</td>
+<td>ડ</td>
+<td>ઢ</td>
+<td>ણ</td>
+<td>ત</td>
+<td>થ</td>
+<td>દ</td>
+<td>ધ</td>
+<td>ન</td>
+<td style="background:#ccc;"></td>
+<td>પ</td>
+<td>ફ</td>
+<td>બ</td>
+<td>ભ</td>
+<td>મ</td>
+<td>ય</td>
+<td>ર</td>
+<td style="background:#ccc;"></td>
+<td>લ</td>
+<td>ળ</td>
+<td style="background:#ccc;"></td>
+<td>વ</td>
+<td>શ</td>
+<td>ષ</td>
+<td>સ</td>
+<td>હ</td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Odia_script" class="mw-redirect" title="Odia script">Odia</a></th>
+<td>କ</td>
+<td>ଖ</td>
+<td>ଗ</td>
+<td>ଘ</td>
+<td>ଙ</td>
+<td>ଚ</td>
+<td>ଛ</td>
+<td>ଜ</td>
+<td>ଝ</td>
+<td>ଞ</td>
+<td>ଟ</td>
+<td>ଠ</td>
+<td>ଡ</td>
+<td>ଢ</td>
+<td>ଣ</td>
+<td>ତ</td>
+<td>ଥ</td>
+<td>ଦ</td>
+<td>ଧ</td>
+<td>ନ</td>
+<td>ନ଼</td>
+<td>ପ</td>
+<td>ଫ</td>
+<td>ବ</td>
+<td>ଭ</td>
+<td>ମ</td>
+<td>ୟ</td>
+<td>ର</td>
+<td>ର଼</td>
+<td>ଲ</td>
+<td>ଳ</td>
+<td>ଳ଼</td>
+<td>ୱ</td>
+<td>ଶ</td>
+<td>ଷ</td>
+<td>ସ</td>
+<td>ହ</td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Gurmukh%C4%AB_script" class="mw-redirect" title="Gurmukhī script">Gurmukhi</a></th>
+<td>ਕ</td>
+<td>ਖ</td>
+<td>ਗ</td>
+<td>ਘ</td>
+<td>ਙ</td>
+<td>ਚ</td>
+<td>ਛ</td>
+<td>ਜ</td>
+<td>ਝ</td>
+<td>ਞ</td>
+<td>ਟ</td>
+<td>ਠ</td>
+<td>ਡ</td>
+<td>ਢ</td>
+<td>ਣ</td>
+<td>ਤ</td>
+<td>ਥ</td>
+<td>ਦ</td>
+<td>ਧ</td>
+<td>ਨ</td>
+<td style="background:#ccc;"></td>
+<td>ਪ</td>
+<td>ਫ</td>
+<td>ਬ</td>
+<td>ਭ</td>
+<td>ਮ</td>
+<td>ਯ</td>
+<td>ਰ</td>
+<td style="background:#ccc;"></td>
+<td>ਲ</td>
+<td>ਲ਼</td>
+<td style="background:#ccc;"></td>
+<td>ਵ</td>
+<td>ਸ਼</td>
+<td style="background:#ccc;"></td>
+<td>ਸ</td>
+<td>ਹ</td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Tibetan_script" class="mw-redirect" title="Tibetan script">Tibetan</a></th>
+<td>ཀ</td>
+<td>ཁ</td>
+<td>ག</td>
+<td style="background:#ccc;"></td>
+<td>ང</td>
+<td>ཅ</td>
+<td>ཆ</td>
+<td>ཇ</td>
+<td style="background:#ccc;"></td>
+<td>ཉ</td>
+<td>ཊ</td>
+<td>ཋ</td>
+<td>ཌ</td>
+<td style="background:#ccc;"></td>
+<td>ཎ</td>
+<td>ཏ</td>
+<td>ཐ</td>
+<td>ད</td>
+<td style="background:#ccc;"></td>
+<td>ན</td>
+<td style="background:#ccc;"></td>
+<td>པ</td>
+<td>ཕ</td>
+<td>བ</td>
+<td style="background:#ccc;"></td>
+<td>མ</td>
+<td>ཡ</td>
+<td>ར</td>
+<td style="background:#ccc;"></td>
+<td>ལ</td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td>ཝ</td>
+<td>ཤ</td>
+<td>ཥ</td>
+<td>ས</td>
+<td>ཧ</td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Sylheti_Nagari" title="Sylheti Nagari">Sylheti</a></th>
+<td>ꠇ</td>
+<td>ꠈ</td>
+<td>ꠉ</td>
+<td>ꠊ</td>
+<td>ꠋ</td>
+<td>ꠌ</td>
+<td>ꠍ</td>
+<td>ꠎ</td>
+<td>ꠏ</td>
+<td></td>
+<td>ꠐ</td>
+<td>ꠑ</td>
+<td>ꠒ</td>
+<td>ꠓ</td>
+<td></td>
+<td>ꠔ</td>
+<td>ꠕ</td>
+<td>ꠖ</td>
+<td>ꠗ</td>
+<td>ꠘ</td>
+<td></td>
+<td>ꠙ</td>
+<td>ꠚ</td>
+<td>ꠛ</td>
+<td>ꠜ</td>
+<td>ꠝ</td>
+<td></td>
+<td>ꠞ</td>
+<td></td>
+<td>ꠟ</td>
+<td>ꠅ</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>ꠡ</td>
+<td>ꠢ</td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Brahmi_script" title="Brahmi script">Brahmi</a></th>
+<td>𑀓<br></td>
+<td>𑀔<br></td>
+<td>𑀕<br></td>
+<td>𑀖<br></td>
+<td>𑀗<br></td>
+<td>𑀘<br></td>
+<td>𑀙<br></td>
+<td>𑀚<br></td>
+<td>𑀛<br></td>
+<td>𑀜<br></td>
+<td>𑀝<br></td>
+<td>𑀞<br></td>
+<td>𑀟<br></td>
+<td>𑀠<br></td>
+<td>𑀡<br></td>
+<td>𑀢<br></td>
+<td>𑀣<br></td>
+<td>𑀤<br></td>
+<td>𑀥<br></td>
+<td>𑀦<br></td>
+<td style="background:#ccc;"></td>
+<td>𑀧<br></td>
+<td>𑀨<br></td>
+<td>𑀩<br></td>
+<td>𑀪<br></td>
+<td>𑀫<br></td>
+<td>𑀬<br></td>
+<td>𑀭<br></td>
+<td style="background:#ccc;"></td>
+<td>𑀮<br></td>
+<td>𑀴<br></td>
+<td style="background:#ccc;"></td>
+<td>𑀯<br></td>
+<td>𑀰<br></td>
+<td>𑀱<br></td>
+<td>𑀲<br></td>
+<td>𑀳<br></td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Telugu_script" title="Telugu script">Telugu</a></th>
+<td>క</td>
+<td>ఖ</td>
+<td>గ</td>
+<td>ఘ</td>
+<td>ఙ</td>
+<td>చ</td>
+<td>ఛ</td>
+<td>జ</td>
+<td>ఝ</td>
+<td>ఞ</td>
+<td>ట</td>
+<td>ఠ</td>
+<td>డ</td>
+<td>ఢ</td>
+<td>ణ</td>
+<td>త</td>
+<td>థ</td>
+<td>ద</td>
+<td>ధ</td>
+<td>న</td>
+<td style="background:#ccc;"></td>
+<td>ప</td>
+<td>ఫ</td>
+<td>బ</td>
+<td>భ</td>
+<td>మ</td>
+<td>య</td>
+<td>ర</td>
+<td>ఱ</td>
+<td>ల</td>
+<td>ళ</td>
+<td>ೞ</td>
+<td>వ</td>
+<td>శ</td>
+<td>ష</td>
+<td>స</td>
+<td>హ</td>
+</tr>
+<tr>
+<th style="font-size: 80%;"><a href="/wiki/Kannada_script" class="mw-redirect" title="Kannada script">Kannada</a></th>
+<td>ಕ</td>
+<td>ಖ</td>
+<td>ಗ</td>
+<td>ಘ</td>
+<td>ಙ</td>
+<td>ಚ</td>
+<td>ಛ</td>
+<td>ಜ</td>
+<td>ಝ</td>
+<td>ಞ</td>
+<td>ಟ</td>
+<td>ಠ</td>
+<td>ಡ</td>
+<td>ಢ</td>
+<td>ಣ</td>
+<td>ತ</td>
+<td>ಥ</td>
+<td>ದ</td>
+<td>ಧ</td>
+<td>ನ</td>
+<td style="background:#ccc;"></td>
+<td>ಪ</td>
+<td>ಫ</td>
+<td>ಬ</td>
+<td>ಭ</td>
+<td>ಮ</td>
+<td>ಯ</td>
+<td>ರ</td>
+<td>ಱ</td>
+<td>ಲ</td>
+<td>ಳ</td>
+<td>ೞ</td>
+<td>ವ</td>
+<td>ಶ</td>
+<td>ಷ</td>
+<td>ಸ</td>
+<td>ಹ</td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Sinhala_script" class="mw-redirect" title="Sinhala script">Sinhala</a></th>
+<td>ක</td>
+<td>ඛ</td>
+<td>ග</td>
+<td>ඝ</td>
+<td>ඞ</td>
+<td>ච</td>
+<td>ඡ</td>
+<td>ජ</td>
+<td>ඣ</td>
+<td>ඤ</td>
+<td>ට</td>
+<td>ඨ</td>
+<td>ඩ</td>
+<td>ඪ</td>
+<td>ණ</td>
+<td>ත</td>
+<td>ථ</td>
+<td>ද</td>
+<td>ධ</td>
+<td>න</td>
+<td style="background:#ccc;"></td>
+<td>ප</td>
+<td>ඵ</td>
+<td>බ</td>
+<td>භ</td>
+<td>ම</td>
+<td>ය</td>
+<td>ර</td>
+<td style="background:#ccc;"></td>
+<td>ල</td>
+<td>ළ</td>
+<td style="background:#ccc;"></td>
+<td>ව</td>
+<td>ශ</td>
+<td>ෂ</td>
+<td>ස</td>
+<td>හ</td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Malayalam_script" title="Malayalam script">Malayalam</a></th>
+<td>ക</td>
+<td>ഖ</td>
+<td>ഗ</td>
+<td>ഘ</td>
+<td>ങ</td>
+<td>ച</td>
+<td>ഛ</td>
+<td>ജ</td>
+<td>ഝ</td>
+<td>ഞ</td>
+<td>ട</td>
+<td>ഠ</td>
+<td>ഡ</td>
+<td>ഢ</td>
+<td>ണ</td>
+<td>ത</td>
+<td>ഥ</td>
+<td>ദ</td>
+<td>ധ</td>
+<td>ന</td>
+<td>ഩ<sup id="cite_ref-mal_6-0" class="reference"><a href="#cite_note-mal-6">[a]</a></sup></td>
+<td>പ</td>
+<td>ഫ</td>
+<td>ബ</td>
+<td>ഭ</td>
+<td>മ</td>
+<td>യ</td>
+<td>ര</td>
+<td>റ</td>
+<td>ല</td>
+<td>ള</td>
+<td>ഴ</td>
+<td>വ</td>
+<td>ശ</td>
+<td>ഷ</td>
+<td>സ</td>
+<td>ഹ</td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Tamil_script" title="Tamil script">Tamil</a></th>
+<td>க</td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td>ங</td>
+<td>ச</td>
+<td style="background:#ccc;"></td>
+<td>ஜ<sup id="cite_ref-tam_7-0" class="reference"><a href="#cite_note-tam-7">[b]</a></sup></td>
+<td style="background:#ccc;"></td>
+<td>ஞ</td>
+<td>ட</td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td>ண</td>
+<td>த</td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td>ந</td>
+<td>ன</td>
+<td>ப</td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td>ம</td>
+<td>ய</td>
+<td>ர</td>
+<td>ற</td>
+<td>ல</td>
+<td>ள</td>
+<td>ழ</td>
+<td>வ</td>
+<td>ஶ<sup id="cite_ref-tam_7-1" class="reference"><a href="#cite_note-tam-7">[b]</a></sup></td>
+<td>ஷ<sup id="cite_ref-tam_7-2" class="reference"><a href="#cite_note-tam-7">[b]</a></sup></td>
+<td>ஸ<sup id="cite_ref-tam_7-3" class="reference"><a href="#cite_note-tam-7">[b]</a></sup></td>
+<td>ஹ<sup id="cite_ref-tam_7-4" class="reference"><a href="#cite_note-tam-7">[b]</a></sup></td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Burmese_alphabet" title="Burmese alphabet">Burmese</a></th>
+<td><span lang="my" xml:lang="my">က</span></td>
+<td><span lang="my" xml:lang="my">ခ</span></td>
+<td><span lang="my" xml:lang="my">ဂ</span></td>
+<td><span lang="my" xml:lang="my">ဃ</span></td>
+<td><span lang="my" xml:lang="my">င</span></td>
+<td><span lang="my" xml:lang="my">စ</span></td>
+<td><span lang="my" xml:lang="my">ဆ</span></td>
+<td><span lang="my" xml:lang="my">ဇ</span></td>
+<td><span lang="my" xml:lang="my">ဈ</span></td>
+<td><span lang="my" xml:lang="my">ဉ</span>/<span lang="my" xml:lang="my">ည</span></td>
+<td><span lang="my" xml:lang="my">ဋ</span></td>
+<td><span lang="my" xml:lang="my">ဌ</span></td>
+<td><span lang="my" xml:lang="my">ဍ</span></td>
+<td><span lang="my" xml:lang="my">ဎ</span></td>
+<td><span lang="my" xml:lang="my">ဏ</span></td>
+<td><span lang="my" xml:lang="my">တ</span></td>
+<td><span lang="my" xml:lang="my">ထ</span></td>
+<td><span lang="my" xml:lang="my">ဒ</span></td>
+<td><span lang="my" xml:lang="my">ဓ</span></td>
+<td><span lang="my" xml:lang="my">န</span></td>
+<td style="background:#ccc"></td>
+<td><span lang="my" xml:lang="my">ပ</span></td>
+<td><span lang="my" xml:lang="my">ဖ</span></td>
+<td><span lang="my" xml:lang="my">ဗ</span></td>
+<td><span lang="my" xml:lang="my">ဘ</span></td>
+<td><span lang="my" xml:lang="my">မ</span></td>
+<td><span lang="my" xml:lang="my">ယ</span></td>
+<td><span lang="my" xml:lang="my">ရ</span></td>
+<td style="background:#ccc"></td>
+<td><span lang="my" xml:lang="my">လ</span></td>
+<td><span lang="my" xml:lang="my">ဠ</span></td>
+<td><span lang="my" xml:lang="my">ၔ</span></td>
+<td><span lang="my" xml:lang="my">ဝ</span></td>
+<td><span lang="my" xml:lang="my">ၐ</span></td>
+<td><span lang="my" xml:lang="my">ၑ</span></td>
+<td><span lang="my" xml:lang="my">သ</span></td>
+<td><span lang="my" xml:lang="my">ဟ</span></td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Khmer_alphabet" title="Khmer alphabet">Khmer</a></th>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ក</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ខ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">គ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ឃ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ង</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ច</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ឆ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ជ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ឈ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ញ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ដ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ឋ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ឌ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ឍ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ណ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ត</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ថ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ទ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ធ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ន</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ប</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ផ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ព</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ភ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ម</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">យ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">រ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ល</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ឡ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">វ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ឝ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ឞ</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ស</span></td>
+<td><span class="script-khmer" style="font-family: 'Khmer Busra', 'Khmer Mondulkiri', 'Khmer OS', 'Khmer OS Battambang', 'Khmer OS Boker', 'Khmer OS Content', 'Khmer OS Fasthand', 'Khmer OS Freehand', 'Khmer OS Metal Chrieng', 'Khmer OS Muol', 'Khmer OS Muol Pali', 'Khmer OS Siemreap', 'Khmer OS System', 'Khmer Oureang', 'Khmer Ratanakiri', 'Noto Sans Khmer', 'Noto Serif Khmer', 'Khmer UI', 'Leelawadee UI', DaunPenh;">ហ</span></td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Thai_script#Sanskrit_and_Pali" class="mw-redirect" title="Thai script">Thai</a></th>
+<td>ก</td>
+<td>ข</td>
+<td>ค</td>
+<td>ฆ</td>
+<td>ง</td>
+<td>จ</td>
+<td>ฉ</td>
+<td>ช</td>
+<td>ฌ</td>
+<td>ญ</td>
+<td>ฎ<sup id="cite_ref-thai_8-0" class="reference"><a href="#cite_note-thai-8">[c]</a></sup></td>
+<td>ฐ</td>
+<td>ฑ</td>
+<td>ฒ</td>
+<td>ณ</td>
+<td>ด<sup id="cite_ref-thai_8-1" class="reference"><a href="#cite_note-thai-8">[c]</a></sup></td>
+<td>ถ</td>
+<td>ท</td>
+<td>ธ</td>
+<td>น</td>
+<td style="background:#ccc;"></td>
+<td>บ<sup id="cite_ref-thai_8-2" class="reference"><a href="#cite_note-thai-8">[c]</a></sup></td>
+<td>ผ</td>
+<td>พ</td>
+<td>ภ</td>
+<td>ม</td>
+<td>ย</td>
+<td>ร</td>
+<td style="background:#ccc;"></td>
+<td>ล</td>
+<td>ฬ</td>
+<td style="background:#ccc;"></td>
+<td>ว</td>
+<td>ศ</td>
+<td>ษ</td>
+<td>ส</td>
+<td>ห</td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Lao_alphabet" title="Lao alphabet">Lao</a></th>
+<td>ກ</td>
+<td>ຂ</td>
+<td>ຄ</td>
+<td style="background:#ccc;"></td>
+<td>ງ</td>
+<td>ຈ</td>
+<td style="background:#ccc;"></td>
+<td>ຊ</td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td>ດ</td>
+<td>ຖ</td>
+<td>ທ</td>
+<td style="background:#ccc;"></td>
+<td>ນ</td>
+<td style="background:#ccc;"></td>
+<td>ບ</td>
+<td>ຜ</td>
+<td>ຟ</td>
+<td>ພ</td>
+<td>ມ</td>
+<td>ຍ</td>
+<td>ຣ</td>
+<td style="background:#ccc;"></td>
+<td>ລ</td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td>ວ</td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td>ສ</td>
+<td>ຫ</td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Balinese_alphabet" class="mw-redirect" title="Balinese alphabet">Balinese</a></th>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬓ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬔ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬕ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬖ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬗ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬘ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬙ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬚ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬛ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬜ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬝ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬞ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬟ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬠ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬡ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬢ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬣ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬤ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬥ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬦ</span></td>
+<td style="background:#ccc;"></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬧ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬨ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬩ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬪ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬫ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬬ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬭ</span></td>
+<td style="background:#ccc;"></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬮ</span></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬯ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬰ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬱ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬲ</span></td>
+<td><span lang="ban" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Aksara Bali', 'Noto Sans Balinese';" xml:lang="ban">ᬳ</span></td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Javanese_script" title="Javanese script">Javanese</a></th>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦏ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦑ</span><sup id="cite_ref-jav_9-0" class="reference"><a href="#cite_note-jav-9">[d]</a></sup></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦒ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦓ</span><sup id="cite_ref-jav_9-1" class="reference"><a href="#cite_note-jav-9">[d]</a></sup></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦔ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦕ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦖ</span><sup id="cite_ref-jav_9-2" class="reference"><a href="#cite_note-jav-9">[d]</a></sup></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦗ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦙ</span><sup id="cite_ref-jav_9-3" class="reference"><a href="#cite_note-jav-9">[d]</a></sup></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦚ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦛ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦜ</span><sup id="cite_ref-jav_9-4" class="reference"><a href="#cite_note-jav-9">[d]</a></sup></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦝ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦞ</span><sup id="cite_ref-jav_9-5" class="reference"><a href="#cite_note-jav-9">[d]</a></sup></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦟ</span><sup id="cite_ref-jav_9-6" class="reference"><a href="#cite_note-jav-9">[d]</a></sup></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦠ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦡ</span><sup id="cite_ref-jav_9-7" class="reference"><a href="#cite_note-jav-9">[d]</a></sup></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦢ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦣ</span><sup id="cite_ref-jav_9-8" class="reference"><a href="#cite_note-jav-9">[d]</a></sup></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦤ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦘ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦥ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦦ</span><sup id="cite_ref-jav_9-9" class="reference"><a href="#cite_note-jav-9">[d]</a></sup></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦧ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦨ</span><sup id="cite_ref-jav_9-10" class="reference"><a href="#cite_note-jav-9">[d]</a></sup></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦩ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦪ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦫ</span></td>
+<td style="background:#ccc;"></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦭ</span></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦮ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦯ</span><sup id="cite_ref-jav_9-11" class="reference"><a href="#cite_note-jav-9">[d]</a></sup></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦰ</span><sup id="cite_ref-jav_9-12" class="reference"><a href="#cite_note-jav-9">[d]</a></sup></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦱ</span></td>
+<td><span lang="jv-java" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Tuladha Jejeg', 'Javanese Text', 'Noto Sans Javanese';" xml:lang="jv-java">ꦲ</span></td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Sundanese_alphabet" class="mw-redirect" title="Sundanese alphabet">Sundanese</a></th>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮊ</span></td>
+<td style="background:#ccc;"></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮌ</span></td>
+<td style="background:#ccc;"></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮍ</span></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮎ</span></td>
+<td style="background:#ccc;"></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮏ</span></td>
+<td style="background:#ccc;"></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮑ</span></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮒ</span></td>
+<td style="background:#ccc;"></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮓ</span></td>
+<td style="background:#ccc;"></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮔ</span></td>
+<td style="background:#ccc;"></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮕ</span></td>
+<td style="background:#ccc;"></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮘ</span></td>
+<td style="background:#ccc;"></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮙ</span></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮚ</span></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮛ</span></td>
+<td style="background:#ccc;"></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮜ</span></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮝ</span></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮞ</span></td>
+<td><span lang="su" style="font-family:'Sundanese Unicode','Noto Sans Sundanese'; font-size:18px;" xml:lang="su">ᮠ</span></td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Lontara_alphabet" class="mw-redirect" title="Lontara alphabet">Lontara</a></th>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨀ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨁ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨂ</span></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨌ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨍ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨎ</span></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨈ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨉ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨊ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨄ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨅ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨆ</span></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨐ</span></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨑ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨒ</span></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨓ</span></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨔ</span></td>
+<td><span class="script-lontara" style="font-family:LontaraOT,Saweri,'Noto Sans Buginese','MPH 2B Damase','Leelawadee UI',Code2000;">ᨕ</span></td>
+</tr>
+<tr>
+<th style="font-size: 75%;"><a href="/wiki/Batak_alphabet" title="Batak alphabet">Batak</a> (Toba)</th>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯂ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯎ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯝ</span></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯐ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯠ</span>/<span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯛ</span></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯖ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯑ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯉ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯇ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯅ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯔ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯒ</span></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯞ</span></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯞ</span></td>
+<td style="background:#ccc;"></td>
+<td style="background:#ccc;"></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯘ</span></td>
+<td><span class="script-batak" style="font-size:16px; line-height:2.1em; word-wrap: break-word; font-family:'Batak Unicode','Noto Sans Batak','Pangururan','Prada';">ᯂ</span></td>
+</tr>
+</tbody></table>
+</body></html>
