@@ -3,10 +3,9 @@
 define("C_LANG", "A");
 define("C_START", "B");
 define("C_END", "C");
+define("C_NAME", "D");
 define("R_CLASS", 1);
 define("R_CLCODE", 2);
-define("R_VCLASS", 26);
-define("R_VLCODE", 27);
 
 class ucd {
 
@@ -93,7 +92,7 @@ class tmap {
 
     protected $cols = 0;
 
-    protected $datastart = "D";
+    protected $datastart = "E";
 
     protected $datacols = [];
 
@@ -114,7 +113,7 @@ class tmap {
 
     public function load()
     {
-        $fp = fopen("map.csv", "r");
+        $fp = fopen("map2.csv", "r");
         while (FALSE != ($row = fgetcsv($fp))) {
             $this->sheet[] = $row;
         }
@@ -122,8 +121,8 @@ class tmap {
         $this->rows = count($this->sheet);
         $this->cols = count($this->sheet[0]);
 
-        $this->class_header = $this->cl_load(R_CLASS, R_VCLASS);
-        $this->byte_map = $this->cl_load(R_CLCODE, R_VLCODE);
+        $this->class_header = $this->cl_load(R_CLASS);
+        $this->byte_map = $this->cl_load(R_CLCODE);
         return [$this->rows, $this->cols];
     }
 
@@ -140,29 +139,22 @@ class tmap {
     public function r_load($row, $offset = 0)
     {
         $cl = [];
-        for ($i = $this->col2num($this->datastart), $idx = $offset; $i < ($this->col2num($this->datastart) + $this->cols - 3); $i++, $idx++) {
+        for ($i = $this->col2num($this->datastart), $idx = $offset; $i < ($this->col2num($this->datastart) + $this->cols - 4); $i++, $idx++) {
             $col = $this->num2col($i);
-            if ($row == 38) {
-                printf("search %d %s", $idx, $col);
-            }
             $val = $this->cell($row, $col);
-            if ($row == 38) {
-                printf(" val %s \n", $val);
-            }
             if ($val != "") {
                 $cl[$idx] = $val;
             }
+            //printf(" # %d => %s === %s\n", $i, $col, $val);
         }
         return $cl;
     }
 
-    public function cl_load($row, $row2)
+    public function cl_load($row)
     {
-        $c = $this->r_load($row);
-        $v = $this->r_load($row2, count($c));
-        $m =  array_merge($c, $v);
-        ksort($m);
-        return $m;
+        $a = $this->r_load($row);
+        //ksort($a);
+        return $a;
     }
 
     public function get_header()
@@ -172,7 +164,7 @@ class tmap {
 
     public function num2col($num)
     {
-        if ($num < 27) {
+        if ($num < 26) {
             return chr($num + 65);
         } else {
             return chr(64 + ($num / 26)) . chr(65 + ($num % 26));
@@ -182,8 +174,8 @@ class tmap {
     public function col2num($col)
     {
         $c_col = ord($col[0]) - 65;
-        if (isset($col[1])) {
-            $c_col = ord($col[1]) - 65 + 26;
+        if (strlen(trim($col)) === 2) {
+            $c_col = ord($col[1]) - 65 + (26 * ($c_col + 1));
         }
         return $c_col;
     }
@@ -191,20 +183,13 @@ class tmap {
     public function find_lang_record($lang)
     {
         $cs = -1; $vr = -1;
-        for ($i = R_CLCODE + 1; $i < R_VCLASS; $i++) {
+        for ($i = R_CLCODE + 1; $i <= $this->rows; $i++) {
             if ($this->cell($i, C_LANG) == $lang) {
                 $cs = $i;
                 break;
             }
         }
-        for ($i = R_VLCODE + 1; $i < R_VLCODE + 22; $i++) {
-            if ($this->cell($i, C_LANG) == $lang) {
-                $vr = $i;
-                break;
-            }
-        }
-
-        return [$cs, $vr];
+        return $cs;
     }
 
     public function get_map_with_meta($lang)
@@ -232,20 +217,20 @@ class tmap {
     }
 
     protected function seek_lang($lang) {
-        list($cs, $vw) = $this->find_lang_record($lang);
-        if ($cs == -1 || $vw == -1) {
+        $cs = $this->find_lang_record($lang);
+        if ($cs == -1) {
             printf("language not found\n");
             exit;
         }
         $this->range_start = hexdec($this->cell($cs, C_START));
         $this->range_end = hexdec($this->cell($cs,C_END));
 
-        return [$cs, $vw];
+        return $cs;
     }
 
     public function get_lang_map($lang) {
-        list($cs, $vw) = $this->seek_lang($lang);
-        return $this->cl_load($cs, $vw);
+        $cs = $this->seek_lang($lang);
+        return $this->cl_load($cs);
     }
 
     public function num2point($num)
