@@ -31,5 +31,5 @@ foreach($lang_array as $v) {
 
     $runner = new Runner($v[0], strtolower($v[3]));
     $runner->build_map(false);
-    $runner->format_header(strtolower($v[3]) . ".h");
+    $runner->format_header("../vconi/" . strtolower($v[3]) . ".h");
 }

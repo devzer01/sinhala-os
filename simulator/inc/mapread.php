@@ -43,7 +43,7 @@ class ucd {
 
     public function __construct()
     {
-        $fp = fopen("UnicodeData.txt", "r");
+        $fp = fopen("../conf/UnicodeData.txt", "r");
         while (FALSE != ($row = fgetcsv($fp, 0, ";"))) {
             $idx = strtoupper(dechex(hexdec($row[0])));
             $this->sheet[$idx] = $row;
@@ -113,7 +113,7 @@ class tmap {
 
     public function load()
     {
-        $fp = fopen("map2.csv", "r");
+        $fp = fopen("../conf/map2.csv", "r");
         while (FALSE != ($row = fgetcsv($fp))) {
             $this->sheet[] = $row;
         }
@@ -323,19 +323,20 @@ class Runner {
         $start_r2 = ($this->data[0][0] & 0x00ff);
 
         $fp =fopen($f, "w");
-
+        $nomark = ",";
         $end_r1 = ($this->data[0][1] >> 8);
         $end_r2 = ($this->data[0][1] & 0x00ff);
         fprintf($fp, "const unsigned char si_%s[516] = { %s, %s, %s, %s,\n", $this->name, $this->frmt($start_r1), $this->frmt($start_r2), $this->frmt($end_r1), $this->frmt($end_r2));
         for ($i = 1; $i < count($this->data); $i++) {
+            if ($i === count($this->data) - 1) $nomark = "";
             if (isset($this->data[$i])) {
                 $v = $this->data[$i];
-                fprintf($fp,"0x%s, 0x%s, 0x00, 0x00, ", $this->frmt($v[0]), $this->frmt($v[1]));
+                fprintf($fp,"0x%s, 0x%s, 0x00, 0x00%s ", $this->frmt($v[0]), $this->frmt($v[1]), $nomark);
             } else {
-                fprintf($fp, "0x00, 0x00, 0x00, 0x00, ");
+                fprintf($fp, "0x00, 0x00, 0x00, 0x00%s ", $nomark);
             }
-            if ($i % 3 == 2) {
-                printf("\n");
+            if ($i % 3 == 0) {
+                fprintf($fp,"\n\t");
             }
         }
         fprintf($fp, "};\n");

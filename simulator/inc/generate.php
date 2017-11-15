@@ -1,6 +1,6 @@
 <?php
 
-require_once "mapread.php";
+require_once "../inc/mapread.php";
 
 $langs_array = [
 	['0xF','0B00','0B7F','Odia'],
